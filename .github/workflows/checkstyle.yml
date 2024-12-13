@@ -1,0 +1,27 @@
+name: Checkstyle Linting
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17' # Replace with your Java version
+
+    - name: Run Checkstyle
+      run: |
+        mkdir -p tools
+        curl -LJO https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.12.1/checkstyle-10.12.1-all.jar
+        java -jar checkstyle-10.12.1-all.jar -c checkstyle.xml src/
