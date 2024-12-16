@@ -20,6 +20,7 @@ public class Gamepad {
     public boolean getButtonPressed(Identifier button) {
 
         Component[] components = controller.getComponents();
+
         for (Component component : components) {
 
             if (component.getIdentifier().toString().equals(button.toString())) {
@@ -135,5 +136,14 @@ public class Gamepad {
      */
     public double getRightTrigger() {
         return controller.getComponent(Identifier.Axis.RZ).getPollData();
+    }
+
+    /**
+     * Returns the DPad/POV
+     * 
+     * @return 0 - 1
+     */
+    public double getPOV() {
+        return controller.getComponent(Identifier.Axis.POV).getPollData();
     }
 }
