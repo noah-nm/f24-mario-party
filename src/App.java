@@ -26,9 +26,11 @@ public class App {
 
             // handle input below
 
-            if (gamepads.get(0).getAButton()) {
-                System.out.println("A is being pressed");
-            }
+            System.out.println("Triggers" + gamepads.get(0).getTriggers());
+
+            // if (gamepads.get(0).getAButton()) {
+            //     System.out.println("A is being pressed");
+            // }
 
             DConsole.pause(10);
         }

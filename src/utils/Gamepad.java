@@ -117,25 +117,17 @@ public class Gamepad {
     }
 
     /**
-     * Returns how far the left trigger is pressed down
+     * Returns how far the triggers are pressed down
      * 
-     * It doesn't fully reach 1.0, so use something smaller for a threshold
+     * It doesn't fully reach 1, so use something smaller for a threshold
+     
+     * If its positive, right is pressed down, 
+     * If its negative, left is down
      * 
-     * @return 0.0 - ~1.0
+     * @return ~ -1.0 to ~1.0
      */
-    public double getLeftTrigger() {
+    public double getTriggers() {
         return controller.getComponent(Identifier.Axis.Z).getPollData();
-    }
-
-    /**
-     * Returns how far the left trigger is pressed down
-     * 
-     * It doesn't fully reach 1.0, so use something smaller for a threshold
-     * 
-     * @return 0.0 - ~1.0
-     */
-    public double getRightTrigger() {
-        return controller.getComponent(Identifier.Axis.RZ).getPollData();
     }
 
     /**
