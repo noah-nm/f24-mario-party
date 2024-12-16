@@ -6,23 +6,17 @@ import net.java.games.input.ControllerEnvironment;
 import utils.Gamepad;
 
 public class App {
+    ArrayList<Gamepad> gamepads = new ArrayList<>();
+    Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+
     public static void main(String[] args) throws Exception {
+        App app = new App();
+        app.run();
+    }
+
+    public void run() {
         // init controllers
-
-        // get all controllers
-        Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
-        ArrayList<Gamepad> gamepads = new ArrayList<>();
-
-        // find gamepads
-        for (Controller controller : controllers) {
-
-            if (controller.getType() == Controller.Type.GAMEPAD) {
-                System.out.println(controller.getName() + " is a gamepad");
-                // add gamepad to list
-                gamepads.add(new Gamepad(controller));
-            }
-        }
-        
+        initGameControllers();
 
         while (true) {
             // ask controller for new data
@@ -37,6 +31,24 @@ public class App {
             }
 
             DConsole.pause(10);
+        }
+    }
+
+    /**
+     * Initializes game controllers for use
+     * 
+     */
+    public void initGameControllers() {
+        // get all controllers
+
+        // find gamepads
+        for (Controller controller : controllers) {
+
+            if (controller.getType() == Controller.Type.GAMEPAD) {
+                System.out.println(controller.getName() + " is a gamepad");
+                // add gamepad to list
+                gamepads.add(new Gamepad(controller));
+            }
         }
     }
 }
