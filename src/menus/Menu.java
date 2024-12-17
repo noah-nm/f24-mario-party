@@ -20,7 +20,7 @@ public abstract class Menu {
     /**
      * runs a given menu
      * 
-     * @return null
+     * 
      */
     public abstract void play();
     

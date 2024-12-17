@@ -17,7 +17,7 @@ public class MainMenu extends Menu {
     /**
      * Runs the main menu screen
      * 
-     * @return null
+     * 
      */
     public void play() {
         boolean exitMenu = false;

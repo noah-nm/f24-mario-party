@@ -8,7 +8,6 @@ import menus.*;
 public class App {
 
     // list vars
-    ArrayList<Menu> menus = new ArrayList<>();
     ArrayList<Gamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
