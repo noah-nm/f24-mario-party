@@ -1,6 +1,6 @@
 package menus;
 
-import DLibX.*;
+import DLibX.DConsole;
 import utils.Gamepad;
 import java.util.ArrayList;
 import net.java.games.input.Controller;
@@ -19,7 +19,6 @@ public abstract class Menu {
 
     /**
      * runs a given menu
-     * 
      * 
      */
     public abstract void play();
