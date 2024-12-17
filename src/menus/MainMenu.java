@@ -24,7 +24,7 @@ public class MainMenu extends Menu {
     public void play() {
         boolean exitMenu = false;
 
-        Sound bgMusic = new Sound("eek.wav");
+        Sound bgMusic = new Sound("title.wav");
 
         bgMusic.setLoopCount(Clip.LOOP_CONTINUOUSLY);
         bgMusic.play();
