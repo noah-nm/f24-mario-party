@@ -6,12 +6,11 @@ import java.util.ArrayList;
 
 import DLibX.*;
 import utils.Gamepad;
-import net.java.games.input.Controller;
 
 public class MainMenu extends Menu {
 
-    public MainMenu(DConsole dc, ArrayList<Gamepad> gamepads, Controller[] controllers) {
-        super(dc, gamepads, controllers);
+    public MainMenu(DConsole dc, ArrayList<Gamepad> gamepads) {
+        super(dc, gamepads);
     }
 
     /**
@@ -25,8 +24,8 @@ public class MainMenu extends Menu {
         while (!exitMenu) {
 
             // poll controler output
-            for (Controller controller : this.controllers) {
-                controller.poll();
+            for (Gamepad gamepad : gamepads) {
+                gamepad.poll();
             }
 
             this.dc.clear();
@@ -34,7 +33,7 @@ public class MainMenu extends Menu {
             // background
             this.dc.setOrigin(DConsole.ORIGIN_TOP_LEFT);
             this.dc.setPaint(new Color(121, 224, 218, 200));
-            this.dc.fillRect(0, 0, this.dc.getWidth(), this.dc.getHeight());
+            this.dc.fillRect(0, 0, 1200, this.dc.getHeight());
 
             // title text
             Font arialTitle = new Font("arial", 1, 100);

@@ -30,6 +30,14 @@ public class Gamepad {
         return false;
     }
 
+    /**
+     * Get controller output
+     * 
+     */
+    public void poll() {
+        controller.poll();
+    }
+
     public boolean getAButton() {
         return getButtonPressed(Identifier.Button._0);
     }
