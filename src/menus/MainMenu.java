@@ -6,15 +6,14 @@ import java.util.ArrayList;
 
 import javax.sound.sampled.Clip;
 
-import DLibX.*;
+import DLibX.DConsole;
 import utils.Gamepad;
 import utils.Sound;
-import net.java.games.input.Controller;
 
 public class MainMenu extends Menu {
 
-    public MainMenu(DConsole dc, ArrayList<Gamepad> gamepads, Controller[] controllers) {
-        super(dc, gamepads, controllers);
+    public MainMenu(DConsole dc, ArrayList<Gamepad> gamepads) {
+        super(dc, gamepads);
     }
 
     /**
@@ -33,8 +32,8 @@ public class MainMenu extends Menu {
         while (!exitMenu) {
 
             // poll controler output
-            for (Controller controller : this.controllers) {
-                controller.poll();
+            for (Gamepad gamepad : gamepads) {
+                gamepad.poll();
             }
 
             this.dc.clear();

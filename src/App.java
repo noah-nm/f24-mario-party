@@ -25,9 +25,8 @@ public class App {
         // initialization
         initGameControllers();
         dc.setResizable(false);
-
         // main menu
-        MainMenu mainMenu = new MainMenu(dc, gamepads, controllers);
+        MainMenu mainMenu = new MainMenu(dc, gamepads);
         mainMenu.play();
 
         // clear (currently for testing purposes)
