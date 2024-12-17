@@ -33,7 +33,7 @@ public class MainMenu extends Menu {
             // background
             this.dc.setOrigin(DConsole.ORIGIN_TOP_LEFT);
             this.dc.setPaint(new Color(121, 224, 218, 200));
-            this.dc.fillRect(0, 0, 1200, this.dc.getHeight());
+            this.dc.fillRect(0, 0, this.dc.getWidth(), this.dc.getHeight());
 
             // title text
             Font arialTitle = new Font("arial", 1, 100);
