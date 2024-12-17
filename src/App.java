@@ -1,13 +1,19 @@
 import java.util.ArrayList;
-
 import DLibX.DConsole;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import utils.Gamepad;
+import menus.*;
 
 public class App {
+
+    // list vars
     ArrayList<Gamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+
+    DConsole dc = new DConsole("Mario Party", 1200, 800, true);
+
+    boolean running = true;
 
     public static void main(String[] args) throws Exception {
         App app = new App();
@@ -15,25 +21,18 @@ public class App {
     }
 
     public void run() {
-        // init controllers
+        // initialization
         initGameControllers();
+        dc.setResizable(false);
 
-        while (true) {
-            // ask controller for new data
-            for (Controller controller : controllers) {
-                controller.poll();
-            }
+        // main menu
+        MainMenu mainMenu = new MainMenu(dc, gamepads, controllers);
+        mainMenu.play();
 
-            // handle input below
+        // clear (currently for testing purposes)
+        dc.clear();
 
-            System.out.println("Triggers" + gamepads.get(0).getTriggers());
-
-            // if (gamepads.get(0).getAButton()) {
-            //     System.out.println("A is being pressed");
-            // }
-
-            DConsole.pause(10);
-        }
+        dc.redraw();
     }
 
     /**
@@ -41,7 +40,6 @@ public class App {
      * 
      */
     public void initGameControllers() {
-        // get all controllers
 
         // find gamepads
         for (Controller controller : controllers) {
@@ -51,6 +49,8 @@ public class App {
                 // add gamepad to list
                 gamepads.add(new Gamepad(controller));
             }
+
         }
+
     }
 }
