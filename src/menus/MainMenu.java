@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.sound.sampled.Clip;
+
 import DLibX.*;
 import utils.Gamepad;
+import utils.Sound;
 import net.java.games.input.Controller;
 
 public class MainMenu extends Menu {
@@ -21,6 +24,11 @@ public class MainMenu extends Menu {
      */
     public void play() {
         boolean exitMenu = false;
+
+        Sound bgMusic = new Sound("eek.wav");
+
+        bgMusic.setLoopCount(Clip.LOOP_CONTINUOUSLY);
+        bgMusic.play();
 
         while (!exitMenu) {
 
@@ -51,6 +59,7 @@ public class MainMenu extends Menu {
             // exit main menu if start button is pressed
             if (this.gamepads.get(0).getStartButton()) {
                 exitMenu = true;
+                bgMusic.stop();
             }
 
             dc.redraw();
