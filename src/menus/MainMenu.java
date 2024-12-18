@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.sound.sampled.Clip;
-
 import DLibX.DConsole;
 import utils.Gamepad;
 import utils.Sound;
@@ -24,14 +22,14 @@ public class MainMenu extends Menu {
     public void play() {
         boolean exitMenu = false;
 
-        Sound bgMusic = new Sound("ahhh.mp3");
+        Sound bgMusic = new Sound("title.mp3");
 
         bgMusic.play();
         bgMusic.setLooping(true);
 
         while (!exitMenu) {
 
-            // poll controler output
+            // poll controller output
             for (Gamepad gamepad : gamepads) {
                 gamepad.poll();
             }
@@ -56,10 +54,10 @@ public class MainMenu extends Menu {
             this.dc.drawString("Press START to Play", this.dc.getWidth() / 2, (this.dc.getHeight() / 2) + 100);
 
             // exit main menu if start button is pressed
-            // if (this.gamepads.get(0).getStartButton()) {
-            // exitMenu = true;
-            // bgMusic.stop();
-            // }
+            if (this.gamepads.get(0).getStartButton()) {
+                exitMenu = true;
+                bgMusic.stop();
+            }
 
             dc.redraw();
         }

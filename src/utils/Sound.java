@@ -19,10 +19,10 @@ public class Sound {
         File f = new File(path);
 
         MP3Player mp3Player = new MP3Player(f);
-        this.soundPlayer = mp3Player;
-        mp3Player.setRepeat(loop);
         mp3Player.play();
-        
+        mp3Player.setRepeat(loop);
+        this.soundPlayer = mp3Player;
+
       } catch (Exception e) {
         System.err.println(e.getMessage());
       }
