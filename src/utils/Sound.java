@@ -1,19 +1,13 @@
 package utils;
 
 import java.io.File;
-import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import jaco.mp3.player.MP3Player;
 
 public class Sound {
-  private boolean running = false;
+  private boolean loop = false;
   private String path;
-  private int loopCount = 0;
-  private Clip clip;
+  private MP3Player soundPlayer;
 
   public Sound(String filePathString) {
     this.path = filePathString;
@@ -22,52 +16,33 @@ public class Sound {
   public void play() {
     new Thread(() -> {
       try {
+        File f = new File(path);
 
-        running = true;
-        // load audio file
-        File audioFile = new File(path);
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-
-        // clip controls the audio
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioStream);
-
-        clip.loop(loopCount);
-
-        // start playing the audio
-        clip.start();
-        this.clip = clip;
-        running = false;
-
-      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-        e.printStackTrace();
+        MP3Player mp3Player = new MP3Player(f);
+        this.soundPlayer = mp3Player;
+        mp3Player.setRepeat(loop);
+        mp3Player.play();
+        
+      } catch (Exception e) {
+        System.err.println(e.getMessage());
       }
 
     }).start();
   }
 
   /**
-   * Checks if the sound is playing
-   * @return true if playing
-   */
-  public boolean isRunning() {
-    return this.running;
-  }
-
-  /**
    * Stops the sound
    */
   public void stop() {
-    this.clip.stop();
+    this.soundPlayer.stop();
   }
 
   /**
-   * Sets the number of loops
-   * Use -1 for infinite looping
+   * Sets if the sound player should keep looping
    * 
-   * @param loopCount
+   * @param looping true to loop
    */
-  public void setLoopCount(int loopCount) {
-    this.loopCount = loopCount;
+  public void setLooping(boolean looping) {
+    this.loop = looping;
   }
 }
