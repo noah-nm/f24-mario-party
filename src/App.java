@@ -8,7 +8,7 @@ import utils.Gamepad;
 
 public class App {
 
-    // list vars
+    // lists
     ArrayList<Gamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
@@ -22,17 +22,22 @@ public class App {
     }
 
     public void run() {
-        // initialization
-        initGameControllers();
-        dc.setResizable(false);
-        // main menu
-        MainMenu mainMenu = new MainMenu(dc, gamepads);
-        mainMenu.play();
+        while (running) {
 
-        // clear (currently for testing purposes)
-        dc.clear();
+            // initialization
+            initGameControllers();
+            dc.setResizable(false);
 
-        dc.redraw();
+            // main menu
+            MainMenu mainMenu = new MainMenu(dc, gamepads);
+            mainMenu.play();
+
+            // player select
+            PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
+            playerSelect.play();
+
+            dc.clear();
+        }
     }
 
     /**
