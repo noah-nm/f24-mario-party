@@ -5,6 +5,8 @@ import menus.MainMenu;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import utils.Gamepad;
+import menus.*;
+import menus.PlayerSelect;
 
 public class App {
 
@@ -36,7 +38,14 @@ public class App {
             PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
             playerSelect.play();
 
-            dc.clear();
+            // define new assigned players array list, this array list should be used in place of the gamepads array list for further screens
+            ArrayList<Gamepad> players = playerSelect.getPlayers();
+
+            // used to test player selection screen, can be removed once another screen is added here
+            while (true) {
+                dc.clear();
+                dc.redraw();
+            }
         }
     }
 
