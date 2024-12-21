@@ -8,12 +8,13 @@ import net.java.games.input.Controller;
 public abstract class Game {
 
     protected DConsole dc;
-    protected ArrayList<Gamepad> gamepads;
+    protected ArrayList<Gamepad> players;
     protected Controller[] controllers;
 
-    public Game(DConsole dc, ArrayList<Gamepad> gamepads, Controller[] controllers) {
+    // the players param should be the array list defined in the main loop after PlayerSelect.play() is done
+    public Game(DConsole dc, ArrayList<Gamepad> players, Controller[] controllers) {
         this.dc = dc;
-        this.gamepads = gamepads;
+        this.players = players;
         this.controllers = controllers;
     }
 

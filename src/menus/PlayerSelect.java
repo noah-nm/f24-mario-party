@@ -33,13 +33,13 @@ public class PlayerSelect extends Menu {
                
                 // allow players to select a color (player number)
                 if (gamepad.getBButton() && players.get(0) == null && !players.contains(gamepad)) {
-                    players.add(0, gamepad);;
+                    players.set(0, gamepad);;
                 } else if (gamepad.getXButton() && players.get(1) == null && !players.contains(gamepad)) {
-                    players.add(1, gamepad);
+                    players.set(1, gamepad);
                 } else if (gamepad.getAButton() && players.get(2) == null && !players.contains(gamepad)) {
-                    players.add(2, gamepad);
+                    players.set(2, gamepad);
                 } else if (gamepad.getYButton() && players.get(3) == null && !players.contains(gamepad)) {
-                    players.add(3, gamepad);
+                    players.set(3, gamepad);
                 }
                 
             }
