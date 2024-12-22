@@ -4,6 +4,7 @@ import DLibX.DConsole;
 import menus.MainMenu;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
+import utils.AbstractGamepad;
 import utils.Gamepad;
 import menus.*;
 import menus.PlayerSelect;
@@ -11,7 +12,7 @@ import menus.PlayerSelect;
 public class App {
 
     // lists
-    ArrayList<Gamepad> gamepads = new ArrayList<>();
+    ArrayList<AbstractGamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
     DConsole dc = new DConsole("Mario Party", 1200, 800, true);
