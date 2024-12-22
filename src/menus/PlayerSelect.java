@@ -12,7 +12,7 @@ import java.awt.Font;
 
 public class PlayerSelect extends Menu {
 
-    private ArrayList<Gamepad> players = new ArrayList<Gamepad>(Arrays.asList(null, null, null, null));
+    private Gamepad[] playerControllers = new Gamepad[4];
 
     public PlayerSelect(DConsole dc, ArrayList<AbstractGamepad> gamepads) {
         super(dc, gamepads);
@@ -33,25 +33,28 @@ public class PlayerSelect extends Menu {
                 gamepad.poll();
                
                 // allow players to select a color (player number)
-                if (gamepad.getBButton() && players.get(0) == null && !players.contains(gamepad)) {
-                    players.set(0, (Gamepad) gamepad);;
-                } else if (gamepad.getXButton() && players.get(1) == null && !players.contains(gamepad)) {
-                    players.set(1, (Gamepad) gamepad);
-                } else if (gamepad.getAButton() && players.get(2) == null && !players.contains(gamepad)) {
-                    players.set(2, (Gamepad) gamepad);
-                } else if (gamepad.getYButton() && players.get(3) == null && !players.contains(gamepad)) {
-                    players.set(3, (Gamepad) gamepad);
+                if (gamepad.getBButton() && playerControllers[0] == null && playerControllers[0] != gamepad) {
+                    playerControllers[0] = (Gamepad) gamepad;
+                } else if (gamepad.getXButton() && playerControllers[1] == null && playerControllers[1] != gamepad) {
+                    playerControllers[1] = (Gamepad) gamepad;
+                } else if (gamepad.getAButton() && playerControllers[2] == null && playerControllers[2] != gamepad) {
+                    playerControllers[2] = (Gamepad) gamepad;
+                } else if (gamepad.getYButton() && playerControllers[3] == null && playerControllers[3] != gamepad) {
+                    playerControllers[3] = (Gamepad) gamepad;
                 }
                 
             }
 
             // allow a player to cancel their choice
-            for (Gamepad player : players) {
-                if (player != null) {
-                    if (player.getBackButton()) {
-                        int index = players.indexOf(player);
-                        if (index != -1) {
-                            players.set(index, null);
+            // god this is ugly
+            for (Gamepad playerController : playerControllers) {
+                if (playerController != null) {
+                    if (playerController.getBackButton()) {
+                        for (int i = 0; i < playerControllers.length; i++) {
+                            if (playerControllers[i] != null && playerControllers[i].equals(playerController)) {
+                                playerControllers[i] = null;
+                                break;
+                            }
                         }
                     }
                 }
@@ -59,14 +62,14 @@ public class PlayerSelect extends Menu {
             
             // break loop to next screen
             if (
-                players.get(0) != null &&
-                players.get(1) != null &&
-                players.get(2) != null &&
-                players.get(3) != null &&
-                players.get(0).getStartButton()
+                playerControllers[0] != null &&
+                playerControllers[1] != null &&
+                playerControllers[2] != null &&
+                playerControllers[3] != null &&
+                playerControllers[0].getStartButton()
             ) {
                 exitMenu = true;
-                System.out.println(players);
+                System.out.println(playerControllers);
             }
         }    
     }
@@ -74,10 +77,13 @@ public class PlayerSelect extends Menu {
     /**
      * final player assignments
      * 
-     * @return list of final player assignments (Arraylist<Gamepad>)
+     * @return list of final player assignments (Gamepad[])
      */
-    public ArrayList<Gamepad> getPlayers() {
-        return this.players;
+    public Gamepad[] getPlayers() {
+        for (int i = 0; i < this.playerControllers.length; i++) {
+            System.out.println(this.playerControllers[i]);
+        }
+        return this.playerControllers;
     }
 
     // draw static GUI elements
@@ -160,7 +166,7 @@ public class PlayerSelect extends Menu {
         Color taken = new Color(39, 219, 39);
 
         // change color if player 1 taken
-        if (players.get(0) == null) {
+        if (playerControllers[0] == null) {
             this.dc.setPaint(notTaken);
         } else {
             this.dc.setPaint(taken);
@@ -170,7 +176,7 @@ public class PlayerSelect extends Menu {
         this.dc.fillEllipse(225, 420, 25, 25);
 
         // change color if player 2 taken
-        if (players.get(1) == null) {
+        if (playerControllers[1] == null) {
             this.dc.setPaint(notTaken);
         } else {
             this.dc.setPaint(taken);
@@ -180,7 +186,7 @@ public class PlayerSelect extends Menu {
         this.dc.fillEllipse(475, 420, 25, 25);
 
         // change color is player 3 is taken 
-        if (players.get(2) == null) {
+        if (playerControllers[2] == null) {
             this.dc.setPaint(notTaken);
         } else {
             this.dc.setPaint(taken);
@@ -190,7 +196,7 @@ public class PlayerSelect extends Menu {
         this.dc.fillEllipse(725, 420, 25, 25);
 
         // change color is player 4 is taken
-        if (players.get(3) == null) {
+        if (playerControllers[3] == null) {
             this.dc.setPaint(notTaken);
         } else {
             this.dc.setPaint(taken);
