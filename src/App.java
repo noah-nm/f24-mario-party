@@ -5,10 +5,12 @@ import menus.MainMenu;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import utils.Gamepad;
+import menus.*;
+import menus.PlayerSelect;
 
 public class App {
 
-    // list vars
+    // lists
     ArrayList<Gamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
@@ -22,17 +24,29 @@ public class App {
     }
 
     public void run() {
-        // initialization
-        initGameControllers();
-        dc.setResizable(false);
-        // main menu
-        MainMenu mainMenu = new MainMenu(dc, gamepads);
-        mainMenu.play();
+        while (running) {
 
-        // clear (currently for testing purposes)
-        dc.clear();
+            // initialization
+            initGameControllers();
+            dc.setResizable(false);
 
-        dc.redraw();
+            // main menu
+            MainMenu mainMenu = new MainMenu(dc, gamepads);
+            mainMenu.play();
+
+            // player select
+            PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
+            playerSelect.play();
+
+            // define new assigned players array, this array should be used in place of the gamepads array list for further screens
+            Gamepad[] players = playerSelect.getPlayers();
+
+            // used to test player selection screen, can be removed once another screen is added here
+            while (true) {
+                dc.clear();
+                dc.redraw();
+            }
+        }
     }
 
     /**
