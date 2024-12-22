@@ -4,7 +4,7 @@ import net.java.games.input.Component;
 import net.java.games.input.Component.Identifier;
 import net.java.games.input.Controller;
 
-public class Gamepad {
+public class Gamepad extends AbstractGamepad {
     private Controller controller;
 
     public Gamepad(Controller c) {

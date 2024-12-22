@@ -3,6 +3,7 @@ package menus;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import utils.AbstractGamepad;
 import utils.Gamepad;
 import DLibX.*;
 
@@ -13,7 +14,7 @@ public class PlayerSelect extends Menu {
 
     private Gamepad[] playerControllers = new Gamepad[4];
 
-    public PlayerSelect(DConsole dc, ArrayList<Gamepad> gamepads) {
+    public PlayerSelect(DConsole dc, ArrayList<AbstractGamepad> gamepads) {
         super(dc, gamepads);
     }
 
@@ -28,18 +29,18 @@ public class PlayerSelect extends Menu {
 
             drawGui();
             
-            for (Gamepad gamepad : this.gamepads) {
+            for (AbstractGamepad gamepad : this.gamepads) {
                 gamepad.poll();
                
                 // allow players to select a color (player number)
                 if (gamepad.getBButton() && playerControllers[0] == null && playerControllers[0] != gamepad) {
-                    playerControllers[0] = gamepad;
+                    playerControllers[0] = (Gamepad) gamepad;
                 } else if (gamepad.getXButton() && playerControllers[1] == null && playerControllers[1] != gamepad) {
-                    playerControllers[1] = gamepad;
+                    playerControllers[1] = (Gamepad) gamepad;
                 } else if (gamepad.getAButton() && playerControllers[2] == null && playerControllers[2] != gamepad) {
-                    playerControllers[2] = gamepad;
+                    playerControllers[2] = (Gamepad) gamepad;
                 } else if (gamepad.getYButton() && playerControllers[3] == null && playerControllers[3] != gamepad) {
-                    playerControllers[3] = gamepad;
+                    playerControllers[3] = (Gamepad) gamepad;
                 }
                 
             }

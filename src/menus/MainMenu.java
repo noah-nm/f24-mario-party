@@ -5,12 +5,12 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
-import utils.Gamepad;
+import utils.AbstractGamepad;
 import utils.Sound;
 
 public class MainMenu extends Menu {
 
-    public MainMenu(DConsole dc, ArrayList<Gamepad> gamepads) {
+    public MainMenu(DConsole dc, ArrayList<AbstractGamepad> gamepads) {
         super(dc, gamepads);
     }
 
@@ -30,7 +30,7 @@ public class MainMenu extends Menu {
         while (!exitMenu) {
 
             // poll controller output
-            for (Gamepad gamepad : gamepads) {
+            for (AbstractGamepad gamepad : gamepads) {
                 gamepad.poll();
             }
 
