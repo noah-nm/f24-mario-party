@@ -1,18 +1,17 @@
 package games;
 
-import java.util.ArrayList;
-
 import DLibX.DConsole;
-import utils.Gamepad;
+import utils.AbstractGamepad;
 
 public abstract class Game {
 
     protected DConsole dc;
-    protected ArrayList<Gamepad> gamepads;
+    protected AbstractGamepad[] playerControllers;
 
-    public Game(DConsole dc, ArrayList<Gamepad> gamepads) {
+    // the players param should be the array list defined in the main loop after PlayerSelect.play() is done
+    public Game(DConsole dc, AbstractGamepad[] playerControllers) {
         this.dc = dc;
-        this.gamepads = gamepads;
+        this.playerControllers = playerControllers;
     }
 
     /**

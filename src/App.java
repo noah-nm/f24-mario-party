@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import DLibX.DConsole;
 import menus.MainMenu;
+import menus.PlayerSelect;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import utils.AbstractGamepad;
@@ -30,14 +31,30 @@ public class App {
         initGameControllers();
         dc.setResizable(false);
         dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
-        // main menu
-        MainMenu mainMenu = new MainMenu(dc, gamepads);
-        mainMenu.play();
 
-        // clear (currently for testing purposes)
-        dc.clear();
+        while (running) {
 
-        dc.redraw();
+            // initialization
+            initGameControllers();
+            dc.setResizable(false);
+
+            // main menu
+            MainMenu mainMenu = new MainMenu(dc, gamepads);
+            mainMenu.play();
+
+            // player select
+            PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
+            playerSelect.play();
+
+            // define new assigned players array, this array should be used in place of the gamepads array list for further screens
+            AbstractGamepad[] players = playerSelect.getPlayers();
+
+            // used to test player selection screen, can be removed once another screen is added here
+            while (true) {
+                dc.clear();
+                dc.redraw();
+            }
+        }
     }
 
     /**
