@@ -25,13 +25,13 @@ public class App {
     }
 
     public void run() {
-        // this code adds a debug controller for when you don't need/have a controller
-        // but need to start the game
-        //
-        // gamepads.add(new DebugGamepad());
+        initGameControllers();
+
+        if(gamepads.size() == 0) {
+            gamepads.add(new DebugGamepad());
+        }
 
         // initialization
-        initGameControllers();
         dc.setResizable(false);
         dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
 
@@ -75,11 +75,5 @@ public class App {
             }
 
         }
-
-        if (gamepads.size() == 0) {
-            System.out.println("No controllers found! Plug in at least one controller to run!");
-            System.exit(1);
-        }
-
     }
 }
