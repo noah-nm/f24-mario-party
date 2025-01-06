@@ -25,7 +25,10 @@ public class App {
     }
 
     public void run() {
-        //gamepads.add(new DebugGamepad());
+        // this code adds a debug controller for when you don't need/have a controller
+        // but need to start the game
+        //
+        // gamepads.add(new DebugGamepad());
 
         // initialization
         initGameControllers();
