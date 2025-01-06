@@ -25,7 +25,7 @@ public class App {
     }
 
     public void run() {
-        gamepads.add(new DebugGamepad());
+        //gamepads.add(new DebugGamepad());
 
         // initialization
         initGameControllers();
@@ -66,7 +66,7 @@ public class App {
         for (Controller controller : controllers) {
 
             if (controller.getType() == Controller.Type.GAMEPAD) {
-                System.out.println(controller.getName() + " is a gamepad");
+                System.out.println(controller.getName() + " found");
                 // add gamepad to list
                 gamepads.add(new Gamepad(controller));
             }
