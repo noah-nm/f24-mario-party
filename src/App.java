@@ -4,12 +4,14 @@ import DLibX.DConsole;
 import menus.MainMenu;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
+import utils.AbstractGamepad;
+import utils.DebugGamepad;
 import utils.Gamepad;
 
 public class App {
 
     // list vars
-    ArrayList<Gamepad> gamepads = new ArrayList<>();
+    ArrayList<AbstractGamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
     DConsole dc = new DConsole("Mario Party", 1200, 800, true);
@@ -22,9 +24,12 @@ public class App {
     }
 
     public void run() {
+        gamepads.add(new DebugGamepad());
+
         // initialization
         initGameControllers();
         dc.setResizable(false);
+        dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
         // main menu
         MainMenu mainMenu = new MainMenu(dc, gamepads);
         mainMenu.play();
@@ -37,7 +42,6 @@ public class App {
 
     /**
      * Initializes game controllers for use
-     * 
      */
     public void initGameControllers() {
 
@@ -50,6 +54,11 @@ public class App {
                 gamepads.add(new Gamepad(controller));
             }
 
+        }
+
+        if (gamepads.size() == 0) {
+            System.out.println("No controllers found! Plug in at least one controller to run!");
+            System.exit(1);
         }
 
     }
