@@ -1,8 +1,9 @@
-package menus;
+package marioparty.menus;
+
+import java.util.ArrayList;
 
 import DLibX.DConsole;
-import utils.Gamepad;
-import java.util.ArrayList;
+import marioparty.utils.Gamepad;
 
 public abstract class Menu {
 

@@ -1,7 +1,7 @@
-package games;
+package marioparty.games;
 
-import utils.Gamepad;
 import DLibX.DConsole;
+import marioparty.utils.Gamepad;
 import net.java.games.input.Controller;
 
 public abstract class Game {
