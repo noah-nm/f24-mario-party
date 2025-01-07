@@ -77,9 +77,6 @@ public class PlayerSelect extends Menu {
      * @return list of final player assignments (Gamepad[])
      */
     public Gamepad[] getPlayers() {
-        for (int i = 0; i < this.playerControllers.length; i++) {
-            System.out.println(this.playerControllers[i]);
-        }
         return this.playerControllers;
     }
 

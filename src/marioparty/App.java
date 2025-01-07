@@ -20,7 +20,6 @@ public class App {
     DConsole dc = new DConsole("Mario Party", 1200, 800, true);
 
     public static Game currentGame;
-    private static ArrayList<Game> games = new ArrayList<>();
 
     boolean running = true;
 
@@ -48,10 +47,7 @@ public class App {
         Gamepad[] players = playerSelect.getPlayers();
 
         // horrors beyond human comprehension
-        currentGame = new GameSelect(dc, players, controllers, games
-            .stream()                       // convenience method
-            .map(game -> game.getName())    // turn it into just the names
-            .toList());                     // turn it into a list
+        currentGame = new GameSelect(dc, players, controllers);
 
         while (running) {
             dc.clear();
@@ -83,10 +79,5 @@ public class App {
 
     public static void switchGame(Game game) {
         App.currentGame = game;
-    }
-
-    public static void registerGameData(Game game) {
-        System.out.println("registered " + game.getName());
-        App.games.add(game);
     }
 }

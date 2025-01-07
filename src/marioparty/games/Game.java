@@ -1,7 +1,6 @@
 package marioparty.games;
 
 import DLibX.DConsole;
-import marioparty.App;
 import marioparty.utils.Gamepad;
 import net.java.games.input.Controller;
 
@@ -17,8 +16,6 @@ public abstract class Game {
         this.playerControllers = playerControllers;
         this.controllers = controllers;
     }
-    
-    public abstract String getName();
 
     /**
      * runs a given game
