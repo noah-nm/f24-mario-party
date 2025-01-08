@@ -66,7 +66,7 @@ public class GameSelect extends Game {
 
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
-        drawEntries();
+        this.drawEntries();
     }
 
     public void addEntry(Game game, String name) {
@@ -86,41 +86,41 @@ public class GameSelect extends Game {
 
         // down
         if (leftY < -0.5) {
-            if (!hasFlicked) {
-                selected--;
+            if (!this.hasFlicked) {
+                this.selected--;
             }
-            hasFlicked = true;
+            this.hasFlicked = true;
         }
 
         // up
         if (leftY > 0.5) {
-            if (!hasFlicked) {
-                selected++;
+            if (!this.hasFlicked) {
+                this.selected++;
             }
-            hasFlicked = true;
+            this.hasFlicked = true;
         }
 
         // neutral state
         if (leftY < 0.5 && leftY > -0.5) {
-            hasFlicked = false;
+            this.hasFlicked = false;
         }
 
         // handle bottom value
-        if (selected > entries.size() - 1) {
-            selected = entries.size() - 1;
+        if (this.selected > this.entries.size() - 1) {
+            this.selected = this.entries.size() - 1;
         }
 
         // handle zero value
-        if (selected < 0) {
-            selected = 0;
+        if (this.selected < 0) {
+            this.selected = 0;
         }
 
         // change selection
-        this.entries.get(selected).setSelected(true);
+        this.entries.get(this.selected).setSelected(true);
 
         // offset game titles
         int offset = 0;
-        for (GameEntry entry : entries) {
+        for (GameEntry entry : this.entries) {
             Font arialTitle = new Font("arial", 0, 20);
 
             if (entry.isSelected()) {
