@@ -11,6 +11,8 @@ import net.java.games.input.Controller;
 
 public class GameSelect extends Game {
 
+    // Custom class for entries
+
     public class GameEntry {
         private Game game;
         private String name;
@@ -45,23 +47,25 @@ public class GameSelect extends Game {
     @Override
     public void play() {
 
-
-        for(Gamepad player : playerControllers) {
+        for (Gamepad player : this.playerControllers) {
             player.poll();
         }
 
         this.dc.fillRect(this.dc.getWidth() / 2, this.dc.getHeight() / 2, 100, 100);
 
-        for(GameEntry entry : entries) {
+        for (GameEntry entry : entries) {
             entry.setSelected(false);
         }
 
-        addEntry(this, "Game select");
-        addEntry(this, "Game select");
-        addEntry(this, "Game select");
-        addEntry(this, "Game select");
-        addEntry(this, "Game select");
+        // Add game entries below
+        this.addEntry(this, "Game select");
+        this.addEntry(this, "Game select");
+        this.addEntry(this, "Game select");
+        this.addEntry(this, "Game select");
+        this.addEntry(this, "Game select");
 
+        // drawing entries
+        // DO NOT ADD ENTRIES BELOW THIS
         drawEntries();
     }
 
@@ -70,50 +74,59 @@ public class GameSelect extends Game {
     }
 
     public void drawEntries() {
-        
-        double leftY = this.playerControllers[0].getLeftStickY();
+        Gamepad p1Gamepad = this.playerControllers[0];
 
-        if(this.playerControllers[0].getAButton()) {
+        if (p1Gamepad.getAButton()) {
             App.switchGame(this.entries.get(selected).game);
             System.out.println("game switched");
         }
 
-        if(leftY < -0.5) {
-            if(!hasFlicked) {
+        // handle controller inputs
+        double leftY = p1Gamepad.getLeftStickY();
+
+        // down
+        if (leftY < -0.5) {
+            if (!hasFlicked) {
                 selected--;
             }
             hasFlicked = true;
         }
 
-        if(leftY > 0.5) {
-            if(!hasFlicked) {
+        // up
+        if (leftY > 0.5) {
+            if (!hasFlicked) {
                 selected++;
             }
             hasFlicked = true;
         }
 
-        if(leftY < 0.5 && leftY > -0.5) {
+        // neutral state
+        if (leftY < 0.5 && leftY > -0.5) {
             hasFlicked = false;
         }
 
-        if(selected > entries.size() - 1) {
+        // handle bottom value
+        if (selected > entries.size() - 1) {
             selected = entries.size() - 1;
         }
 
-        if(selected < 0) {
+        // handle zero value
+        if (selected < 0) {
             selected = 0;
         }
 
+        // change selection
         this.entries.get(selected).setSelected(true);
 
+        // offset game titles
         int offset = 0;
-        for(GameEntry entry : entries) {
+        for (GameEntry entry : entries) {
             Font arialTitle = new Font("arial", 0, 20);
 
-            if(entry.isSelected()) {
+            if (entry.isSelected()) {
                 arialTitle = new Font("arial", 0, 30);
             }
-    
+
             this.dc.setOrigin(DConsole.ORIGIN_TOP_LEFT);
             this.dc.setPaint(Color.BLACK);
             this.dc.setFont(arialTitle);
@@ -121,7 +134,7 @@ public class GameSelect extends Game {
             this.dc.setOrigin(DConsole.ORIGIN_CENTER);
             offset += 25;
 
-            if(entry.isSelected()) {
+            if (entry.isSelected()) {
                 offset += 10;
             }
         }
