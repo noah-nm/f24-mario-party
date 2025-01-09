@@ -1,14 +1,12 @@
 package utils;
 
-import net.java.games.input.Component;
 import net.java.games.input.Component.Identifier;
 import net.java.games.input.Controller;
 
-public class Gamepad extends AbstractGamepad {
-    private Controller controller;
+public abstract class AbstractGamepad {
+    protected Controller controller;
 
-    public Gamepad(Controller c) {
-        this.controller = c;
+    public AbstractGamepad() {
     }
 
     /**
@@ -17,28 +15,13 @@ public class Gamepad extends AbstractGamepad {
      * @param button the button identifier
      * @return button is down
      */
-    @Override
-    public boolean getButtonPressed(Identifier button) {
-
-        Component[] components = controller.getComponents();
-
-        for (Component component : components) {
-
-            if (component.getIdentifier().toString().equals(button.toString())) {
-                return component.getPollData() > 0.5f; // Adjust threshold as needed
-            }
-        }
-        return false;
-    }
+    public abstract boolean getButtonPressed(Identifier button);
 
     /**
      * Get controller output
      * 
      */
-    @Override
-    public void poll() {
-        controller.poll();
-    }
+    public abstract void poll();
 
     public boolean getAButton() {
         return getButtonPressed(Identifier.Button._0);
