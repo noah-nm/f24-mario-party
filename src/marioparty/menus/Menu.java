@@ -3,14 +3,14 @@ package marioparty.menus;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
-import marioparty.utils.Gamepad;
+import marioparty.utils.AbstractGamepad;
 
 public abstract class Menu {
 
     protected DConsole dc;
-    protected ArrayList<Gamepad> gamepads;
+    protected ArrayList<AbstractGamepad> gamepads;
 
-    public Menu(DConsole dc, ArrayList<Gamepad> gamepads) {
+    public Menu(DConsole dc, ArrayList<AbstractGamepad> gamepads) {
         this.dc = dc;
         this.gamepads = gamepads;
     }

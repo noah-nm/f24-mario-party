@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 import DLibX.DConsole;
 import marioparty.App;
-import marioparty.utils.Gamepad;
-import net.java.games.input.Controller;
+import marioparty.utils.AbstractGamepad;
 
 public class GameSelect extends Game {
 
@@ -40,14 +39,14 @@ public class GameSelect extends Game {
     private int selected = 0;
     private boolean hasFlicked = false;
 
-    public GameSelect(DConsole dc, Gamepad[] playerGamepads, Controller[] controllers) {
-        super(dc, playerGamepads, controllers);
+    public GameSelect(DConsole dc, AbstractGamepad[] playerControllers) {
+        super(dc, playerControllers);
     }
 
     @Override
     public void play() {
 
-        for (Gamepad player : this.playerControllers) {
+        for (AbstractGamepad player : this.playerControllers) {
             player.poll();
         }
 
@@ -74,7 +73,7 @@ public class GameSelect extends Game {
     }
 
     public void drawEntries() {
-        Gamepad p1Gamepad = this.playerControllers[0];
+        AbstractGamepad p1Gamepad = this.playerControllers[0];
 
         if (p1Gamepad.getAButton()) {
             App.switchGame(this.entries.get(selected).game);

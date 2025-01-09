@@ -7,6 +7,7 @@ import marioparty.games.Game;
 import marioparty.games.GameSelect;
 import marioparty.menus.MainMenu;
 import marioparty.menus.PlayerSelect;
+import marioparty.utils.AbstractGamepad;
 import marioparty.utils.Gamepad;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
@@ -14,7 +15,7 @@ import net.java.games.input.ControllerEnvironment;
 public class App {
 
     // lists
-    ArrayList<Gamepad> gamepads = new ArrayList<>();
+    ArrayList<AbstractGamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
     DConsole dc = new DConsole("Mario Party", 1200, 800, true);
@@ -44,10 +45,10 @@ public class App {
 
         // define new assigned players array, this array should be used in place of the
         // gamepads array list for further screens
-        Gamepad[] players = playerSelect.getPlayers();
+        AbstractGamepad[] players = playerSelect.getPlayers();
 
         // horrors beyond human comprehension
-        currentGame = new GameSelect(dc, players, controllers);
+        currentGame = new GameSelect(dc, players);
 
         while (running) {
             dc.clear();

@@ -5,19 +5,17 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
-import marioparty.utils.Gamepad;
+import marioparty.utils.AbstractGamepad;
 import marioparty.utils.Sound;
 
 public class MainMenu extends Menu {
 
-    public MainMenu(DConsole dc, ArrayList<Gamepad> gamepads) {
+    public MainMenu(DConsole dc, ArrayList<AbstractGamepad> gamepads) {
         super(dc, gamepads);
     }
 
     /**
      * Runs the main menu screen
-     * 
-     * 
      */
     public void play() {
         boolean exitMenu = false;
@@ -30,7 +28,7 @@ public class MainMenu extends Menu {
         while (!exitMenu) {
 
             // poll controller output
-            for (Gamepad gamepad : gamepads) {
+            for (AbstractGamepad gamepad : gamepads) {
                 gamepad.poll();
             }
 
