@@ -5,15 +5,16 @@ import menus.MainMenu;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import utils.Gamepad;
-import menus.*;
 import menus.PlayerSelect;
+import menus.Leaderboard;
 
 public class App {
 
     // lists
     ArrayList<Gamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
-
+    int[] scores = new int[4];
+  
     DConsole dc = new DConsole("Mario Party", 1200, 800, true);
 
     boolean running = true;
@@ -30,6 +31,7 @@ public class App {
             initGameControllers();
             dc.setResizable(false);
 
+
             // main menu
             MainMenu mainMenu = new MainMenu(dc, gamepads);
             mainMenu.play();
@@ -40,6 +42,10 @@ public class App {
 
             // define new assigned players array, this array should be used in place of the gamepads array list for further screens
             Gamepad[] players = playerSelect.getPlayers();
+
+            //leaderboard
+            Leaderboard leaderboard = new Leaderboard(dc, players, controllers, scores);
+            leaderboard.play();
 
             // used to test player selection screen, can be removed once another screen is added here
             while (true) {
