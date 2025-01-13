@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import DLibX.DConsole;
+import games.Jumping;
 import menus.MainMenu;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
@@ -41,9 +42,12 @@ public class App {
             // define new assigned players array, this array should be used in place of the gamepads array list for further screens
             Gamepad[] players = playerSelect.getPlayers();
 
+            Jumping jumping = new Jumping(dc, players, controllers);
+
             // used to test player selection screen, can be removed once another screen is added here
             while (true) {
                 dc.clear();
+                jumping.play();
                 dc.redraw();
             }
         }

@@ -1,7 +1,6 @@
 package menus;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import utils.Gamepad;
 import DLibX.*;
