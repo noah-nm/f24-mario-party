@@ -1,18 +1,25 @@
 package menus;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import utils.Gamepad;
 import DLibX.*;
 
+=======
+>>>>>>> 73e3951fed22b850782984acc4d0af9fbe63bb17
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+
+import DLibX.DConsole;
+import utils.AbstractGamepad;
 
 public class PlayerSelect extends Menu {
 
-    private Gamepad[] playerControllers = new Gamepad[4];
+    private AbstractGamepad[] playerControllers = new AbstractGamepad[4];
 
-    public PlayerSelect(DConsole dc, ArrayList<Gamepad> gamepads) {
+    public PlayerSelect(DConsole dc, ArrayList<AbstractGamepad> gamepads) {
         super(dc, gamepads);
     }
 
@@ -27,7 +34,7 @@ public class PlayerSelect extends Menu {
 
             drawGui();
             
-            for (Gamepad gamepad : this.gamepads) {
+            for (AbstractGamepad gamepad : this.gamepads) {
                 gamepad.poll();
                
                 // allow players to select a color (player number)
@@ -45,7 +52,7 @@ public class PlayerSelect extends Menu {
 
             // allow a player to cancel their choice
             // god this is ugly
-            for (Gamepad playerController : playerControllers) {
+            for (AbstractGamepad playerController : playerControllers) {
                 if (playerController != null) {
                     if (playerController.getBackButton()) {
                         for (int i = 0; i < playerControllers.length; i++) {
@@ -77,7 +84,7 @@ public class PlayerSelect extends Menu {
      * 
      * @return list of final player assignments (Gamepad[])
      */
-    public Gamepad[] getPlayers() {
+    public AbstractGamepad[] getPlayers() {
         for (int i = 0; i < this.playerControllers.length; i++) {
             System.out.println(this.playerControllers[i]);
         }
