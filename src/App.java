@@ -2,16 +2,19 @@ import java.util.ArrayList;
 
 import DLibX.DConsole;
 import menus.MainMenu;
+import menus.PlayerSelect;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
+import utils.AbstractGamepad;
+import utils.DebugGamepad;
 import utils.Gamepad;
 import menus.PlayerSelect;
 import menus.Leaderboard;
 
 public class App {
 
-    // lists
-    ArrayList<Gamepad> gamepads = new ArrayList<>();
+    // list vars
+    ArrayList<AbstractGamepad> gamepads = new ArrayList<>();
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
     int[] scores = new int[4];
   
@@ -25,6 +28,16 @@ public class App {
     }
 
     public void run() {
+        initGameControllers();
+
+        if(gamepads.size() == 0) {
+            gamepads.add(new DebugGamepad());
+        }
+
+        // initialization
+        dc.setResizable(false);
+        dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
+
         while (running) {
 
             // initialization
@@ -41,7 +54,7 @@ public class App {
             playerSelect.play();
 
             // define new assigned players array, this array should be used in place of the gamepads array list for further screens
-            Gamepad[] players = playerSelect.getPlayers();
+            AbstractGamepad[] players = playerSelect.getPlayers();
 
             //leaderboard
             Leaderboard leaderboard = new Leaderboard(dc, players, controllers, scores);
@@ -57,7 +70,6 @@ public class App {
 
     /**
      * Initializes game controllers for use
-     * 
      */
     public void initGameControllers() {
 
@@ -65,12 +77,11 @@ public class App {
         for (Controller controller : controllers) {
 
             if (controller.getType() == Controller.Type.GAMEPAD) {
-                System.out.println(controller.getName() + " is a gamepad");
+                System.out.println(controller.getName() + " found");
                 // add gamepad to list
                 gamepads.add(new Gamepad(controller));
             }
 
         }
-
     }
 }

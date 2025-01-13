@@ -1,8 +1,7 @@
 package games;
 
-import utils.Gamepad;
 import DLibX.DConsole;
-import net.java.games.input.Controller;
+import utils.AbstractGamepad;
 
 public abstract class Game {
 
@@ -20,8 +19,7 @@ public abstract class Game {
     }
 
     /**
-     * runs a given game
-     * 
+     * Runs a given game
      */
     public abstract void play();
 
