@@ -1,10 +1,6 @@
 package games;
-
-<<<<<<< HEAD
 import java.util.ArrayList;
 import utils.Gamepad;
-=======
->>>>>>> 73e3951fed22b850782984acc4d0af9fbe63bb17
 import DLibX.DConsole;
 import utils.AbstractGamepad;
 

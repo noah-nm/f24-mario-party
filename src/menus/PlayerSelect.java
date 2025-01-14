@@ -1,13 +1,8 @@
 package menus;
-
-<<<<<<< HEAD
 import java.util.ArrayList;
 
 import utils.Gamepad;
 import DLibX.*;
-
-=======
->>>>>>> 73e3951fed22b850782984acc4d0af9fbe63bb17
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
