@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import DLibX.DConsole;
+import games.mashingGame;
 import menus.MainMenu;
 import menus.PlayerSelect;
 import net.java.games.input.Controller;
@@ -53,8 +54,11 @@ public class App {
             AbstractGamepad[] players = playerSelect.getPlayers();
 
             // used to test player selection screen, can be removed once another screen is added here
+            mashingGame game = new mashingGame(dc, players);//
+
             while (true) {
                 dc.clear();
+                game.play();
                 dc.redraw();
             }
         }
