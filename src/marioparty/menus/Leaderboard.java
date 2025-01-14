@@ -1,17 +1,18 @@
-package menus;
+package marioparty.menus;
 
-import utils.Gamepad;
-import DLibX.*;
-import games.Game;
-import java.awt.*;
-import net.java.games.input.Controller;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import DLibX.DConsole;
+import marioparty.games.Game;
+import marioparty.utils.AbstractGamepad;
+
 public class Leaderboard extends Game {
 
-    public Leaderboard(DConsole dc, Gamepad[] gamepads, Controller[] controllers, int[] scores) {
-        super(dc, gamepads, controllers, scores);
+    public Leaderboard(DConsole dc, AbstractGamepad[] gamepads, int[] scores) {
+        super(dc, gamepads, scores);
     }
 
     public void play() {
