@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import DLibX.DConsole;
 import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
 public class RunningGame extends Game {
@@ -181,7 +182,7 @@ public class RunningGame extends Game {
                         winnerOrder.add(i);
                     }
                     // winnerOrder contains correctly sorted winner orders, 0 is 1st
-                    App.switchGame(new GameSelect(dc, playerControllers, scores));
+                    App.switchGame(new Leaderboard(dc, playerControllers, scores));
                 }
             }
 
