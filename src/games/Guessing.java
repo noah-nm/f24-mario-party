@@ -7,8 +7,8 @@ import java.awt.Font;
 
 public class Guessing extends Game{
     
-    public Guessing(DConsole dc, AbstractGamepad[] playerControllers){
-        super(dc, playerControllers);
+    public Guessing(DConsole dc, AbstractGamepad[] playerControllers, int[] scores){
+        super(dc, playerControllers, scores);
     }
 
     public void play(){
