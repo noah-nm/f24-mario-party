@@ -2,6 +2,7 @@ package games;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import DLibX.DConsole;
 import utils.AbstractGamepad;
@@ -13,7 +14,8 @@ public class RunningGame extends Game {
     private int[] playerPos = new int[] { 100, 100, 100, 100 };
     private long[] tripTime = new long[4];
     private int[] tripImmunity = new int[4];
-    
+    private ArrayList<Integer> winnerOrder = new ArrayList<>();
+
     private int screen = 0;
 
     public RunningGame(DConsole dc, AbstractGamepad[] players) {
@@ -63,7 +65,7 @@ public class RunningGame extends Game {
 
             // instructions
             this.dc.setFont(arialSmall);
-            this.dc.drawString("Press START when ready", this.dc.getWidth() / 2, this.dc.getHeight() / 2 - 100);
+            this.dc.drawString("Press A when ready", this.dc.getWidth() / 2, this.dc.getHeight() / 2 - 100);
             this.dc.setPaint(Color.BLACK);
             this.dc.drawString("Press BACK to unselect", this.dc.getWidth() / 2, this.dc.getHeight() / 2 + 350);
 
@@ -173,8 +175,11 @@ public class RunningGame extends Game {
             for (int i = 0; i < playerControllers.length; i++) {
                 tripImmunity[i] -= 1;
                 if (playerPos[i] > this.dc.getWidth() - 100) {
-                    // TODO: Add points
-                    System.out.println("winner");
+                    // TODO: Add points and switch game
+                    if (!winnerOrder.contains(i)) {
+                        winnerOrder.add(i);
+                    }
+                    // winnerOrder contains correctly sorted winner orders, 0 is 1st
                 }
             }
 
@@ -182,31 +187,42 @@ public class RunningGame extends Game {
             for (int i = 0; i < playerControllers.length; i++) {
 
                 // while player is not tripped
-                if(tripTime[i] < System.currentTimeMillis()) {
+                if (tripTime[i] < System.currentTimeMillis()) {
+                    this.dc.setPaint(Color.BLACK);
+                    this.dc.setFont(new Font("arial", 0, 16));
+                    if (!prevInput[i]) {
+                        this.dc.drawString("B", playerPos[i], 150 + (i * 150));
+                    } else {
+                        this.dc.drawString("X", playerPos[i], 150 + (i * 150));
+                    }
 
                     // tripping
-                    if(playerControllers[i].getXButton() && !prevInput[i] && tripImmunity[i] <= 0) {
+                    if (playerControllers[i].getXButton() && !prevInput[i] && tripImmunity[i] <= 0) {
                         tripTime[i] = System.currentTimeMillis() + 1000;
                         prevInput[i] = true;
                     }
-                    
-                    if(playerControllers[i].getBButton() && prevInput[i] && tripImmunity[i] <= 0) {
+
+                    if (playerControllers[i].getBButton() && prevInput[i] && tripImmunity[i] <= 0) {
                         tripTime[i] = System.currentTimeMillis() + 1000;
                         prevInput[i] = false;
                     }
-    
+
                     // game movement
-                    if(playerControllers[i].getXButton() && prevInput[i]) {
+                    if (playerControllers[i].getXButton() && prevInput[i]) {
                         playerPos[i] += 10;
                         tripImmunity[i] = 5;
                         prevInput[i] = false;
                     }
-                    
-                    if(playerControllers[i].getBButton() && !prevInput[i]) {
+
+                    if (playerControllers[i].getBButton() && !prevInput[i]) {
                         playerPos[i] += 10;
                         tripImmunity[i] = 5;
                         prevInput[i] = true;
                     }
+                } else {
+                    this.dc.setPaint(Color.BLACK);
+                    this.dc.setFont(new Font("arial", 0, 16));
+                    this.dc.drawString("Tripped!", playerPos[i], 150 + (i * 150));
                 }
 
             }
