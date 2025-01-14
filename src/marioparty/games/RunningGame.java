@@ -1,11 +1,12 @@
-package games;
+package marioparty.games;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
-import utils.AbstractGamepad;
+import marioparty.App;
+import marioparty.utils.AbstractGamepad;
 
 public class RunningGame extends Game {
 
@@ -18,8 +19,8 @@ public class RunningGame extends Game {
 
     private int screen = 0;
 
-    public RunningGame(DConsole dc, AbstractGamepad[] players) {
-        super(dc, players);
+    public RunningGame(DConsole dc, AbstractGamepad[] players, int[] scores) {
+        super(dc, players, scores);
     }
 
     @Override
@@ -180,6 +181,7 @@ public class RunningGame extends Game {
                         winnerOrder.add(i);
                     }
                     // winnerOrder contains correctly sorted winner orders, 0 is 1st
+                    App.switchGame(new GameSelect(dc, playerControllers, scores));
                 }
             }
 
