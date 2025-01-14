@@ -39,8 +39,8 @@ public class GameSelect extends Game {
     private int selected = 0;
     private boolean hasFlicked = false;
 
-    public GameSelect(DConsole dc, AbstractGamepad[] playerControllers) {
-        super(dc, playerControllers);
+    public GameSelect(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+        super(dc, playerControllers, scores);
     }
 
     @Override
