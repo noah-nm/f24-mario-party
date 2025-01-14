@@ -1,15 +1,16 @@
-package games;
+package marioparty.games;
 
 import java.awt.Color;
 import java.awt.Font;
 
 import DLibX.DConsole;
-import utils.AbstractGamepad;
+import marioparty.App;
+import marioparty.utils.AbstractGamepad;
 
-public class mashingGame extends Game {
+public class MashingGame extends Game {
 
-    public mashingGame(DConsole dc, AbstractGamepad[] playerControllers) {
-        super(dc, playerControllers);
+    public MashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+        super(dc, playerControllers, scores);
     }
 
     public void play() {
@@ -125,11 +126,8 @@ public class mashingGame extends Game {
             dc.redraw();
             dc.pause(10);
         }
-
-        // End Screen Persistence
-        while (true) {
-            dc.pause(100); // Keep the screen frozen indefinitely
-        }
+        dc.pause(3000);
+        App.switchGame(new GameSelect(dc, playerControllers, scores));
     }
 
     private void showWinner(DConsole dc, String player, Color color) {
