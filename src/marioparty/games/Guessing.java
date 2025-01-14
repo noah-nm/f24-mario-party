@@ -1,7 +1,7 @@
-package games;
+package marioparty.games;
 
 import DLibX.DConsole;
-import utils.AbstractGamepad;
+import marioparty.utils.AbstractGamepad;
 import java.awt.Color;
 import java.awt.Font;
 
