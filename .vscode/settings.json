@@ -1,6 +1,12 @@
 {
-  "java.project.sourcePaths": ["src"],
+  "java.project.sourcePaths": [
+    "src"
+  ],
   "java.project.outputPath": "bin",
-  "java.project.referencedLibraries": ["lib/**/*.jar"],
+  "java.project.referencedLibraries": [
+    "lib\\DLibX.jar",
+    "lib\\jaco-mp3-player-0.9.3.jar",
+    "lib\\jinput-2.0.10.jar"
+  ],
   "java.debug.settings.vmArgs": "-Djava.library.path=lib/native"
 }
