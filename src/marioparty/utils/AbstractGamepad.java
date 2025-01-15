@@ -1,4 +1,4 @@
-package utils;
+package marioparty.utils;
 
 import net.java.games.input.Component.Identifier;
 import net.java.games.input.Controller;

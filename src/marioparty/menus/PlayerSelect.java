@@ -1,14 +1,14 @@
-package menus;
-import java.util.ArrayList;
+package marioparty.menus;
 
-import utils.Gamepad;
+
+import marioparty.utils.Gamepad;
 import DLibX.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
-import utils.AbstractGamepad;
+import marioparty.utils.AbstractGamepad;
 
 public class PlayerSelect extends Menu {
 
