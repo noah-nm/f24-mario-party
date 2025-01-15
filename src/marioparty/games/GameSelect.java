@@ -57,8 +57,11 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
-        this.addEntry(new RunningGame(dc, playerControllers, scores), "Running game");
-        this.addEntry(new MashingGame(dc, playerControllers, scores), "Mashing Game");
+        this.addEntry(new mashingGame(dc, playerControllers, scores), "Mashing Game");
+        this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction game");
+        this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
+        this.addEntry(this, "Game select");
+        this.addEntry(this, "Game select");
 
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
