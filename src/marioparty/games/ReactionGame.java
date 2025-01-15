@@ -3,15 +3,15 @@ package games;
 import DLibX.DConsole;
 import java.util.Random;
 import java.awt.Color;
-public class ReactionGame {
+public class ReactionGame extends Game{
     private DConsole dc;
     private Random random;
     public ReactionGame() {
         dc = new DConsole();
         random = new Random();
-        game();
+        play();
     }
-    private void game() {
+    private void play() {
         int x = 100;
         int y = 100;
         int size = 100;
@@ -31,7 +31,8 @@ public class ReactionGame {
 
             start = System.nanoTime();
             
-
+            // I don't know how to implement controller but otherwise this is 4 player if we use mouse
+            // It compares all 4 players scores to select who wins
             while(!dc.isMouseButton(1)) {
                 DConsole.pause(10);
             }
@@ -57,9 +58,5 @@ public class ReactionGame {
         } else {
             System.out.println("Player 4 is the winner with " + times[3] + " reaction time");  
         }
-
-    }
-    public static void main(String[] args) {
-        new ReactionGame();
     }
 }
