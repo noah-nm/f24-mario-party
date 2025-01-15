@@ -30,7 +30,9 @@ public class RunningGame extends Game {
             player.poll();
         }
 
-        if (screen == 0) {
+        if (screen == 0) { // ready screen
+            
+            // handle button presses
             for (int i = 0; i < playerControllers.length; i++) {
                 if (this.playerControllers[i].getAButton()) {
                     readyPlayers[i] = true;
@@ -41,6 +43,7 @@ public class RunningGame extends Game {
                 }
             }
 
+            // if all players are ready, start / switch to screen 1
             boolean allPlayersReady = true;
             for (int i = 0; i < readyPlayers.length; i++) {
                 if (!readyPlayers[i]) {
@@ -60,6 +63,7 @@ public class RunningGame extends Game {
             Font arialSmall = new Font("arial", 1, 30);
             Font arialMedium = new Font("arial", 1, 40);
 
+            // text
             this.dc.setPaint(Color.BLACK);
             this.dc.setOrigin(DConsole.ORIGIN_CENTER);
             this.dc.setFont(arialTitle);
@@ -154,12 +158,11 @@ public class RunningGame extends Game {
             this.dc.fillEllipse(974, 420, 25, 25);
 
             DConsole.pause(15);
-            // game screen
-        } else if (screen == 1) {
+        } else if (screen == 1) { // game screen
             this.dc.setPaint(Color.BLACK);
 
+            // draw lines
             for (int i = 0; i < 5; i++) {
-
                 this.dc.drawLine(100, (i * 150) + 100, this.dc.getWidth() - 100, (i * 150) + 100);
             }
 
@@ -173,6 +176,8 @@ public class RunningGame extends Game {
             this.dc.setPaint(Color.YELLOW);
             this.dc.fillEllipse(playerPos[3], 650, 50, 50);
 
+            boolean gameDone = winnerOrder.size() == 4;
+            
             // calc winner
             for (int i = 0; i < playerControllers.length; i++) {
                 tripImmunity[i] -= 1;
@@ -181,9 +186,18 @@ public class RunningGame extends Game {
                     if (!winnerOrder.contains(i)) {
                         winnerOrder.add(i);
                     }
-                    // winnerOrder contains correctly sorted winner orders, 0 is 1st
-                    App.switchGame(new Leaderboard(dc, playerControllers, scores));
                 }
+            }
+            
+            // handle when the game is done
+            if(gameDone) {
+                // hand out scores 4-1
+                for (int i = winnerOrder.size() - 1; i >= 0; i--) {
+                    System.out.println(i);
+                    scores[winnerOrder.get(i)] += i + 1;
+                }
+                // switch
+                App.switchGame(new Leaderboard(dc, playerControllers, scores));
             }
 
             // game loop
@@ -191,6 +205,8 @@ public class RunningGame extends Game {
 
                 // while player is not tripped
                 if (tripTime[i] < System.currentTimeMillis()) {
+
+                    // player button indicators
                     this.dc.setPaint(Color.BLACK);
                     this.dc.setFont(new Font("arial", 0, 16));
                     if (!prevInput[i]) {
@@ -223,6 +239,7 @@ public class RunningGame extends Game {
                         prevInput[i] = true;
                     }
                 } else {
+                    // tripped display
                     this.dc.setPaint(Color.BLACK);
                     this.dc.setFont(new Font("arial", 0, 16));
                     this.dc.drawString("Tripped!", playerPos[i], 150 + (i * 150));
