@@ -193,7 +193,6 @@ public class RunningGame extends Game {
             if(gameDone) {
                 // hand out scores 4-1
                 for (int i = winnerOrder.size() - 1; i >= 0; i--) {
-                    System.out.println(i);
                     scores[winnerOrder.get(i)] += i + 1;
                 }
                 // switch
