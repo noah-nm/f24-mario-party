@@ -1,12 +1,14 @@
 package marioparty.games;
 
 import DLibX.DConsole;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.awt.Color;
 public class ReactionGame extends Game{
-    private DConsole dc;
     private Random random;
     
     public ReactionGame(DConsole dc, AbstractGamepad[] players, int[] scores) {
@@ -53,14 +55,18 @@ public class ReactionGame extends Game{
         }
         dc.clear();
         dc.redraw();
+
+        // increments scores
         if(times[0] < times[1] && times[0] < times[2] && times[0] < times[3]) {
-            System.out.println("Player 1 is the winner with " + times[0] + " reaction time");
+            scores[0] += 4;
         } else if(times[1] < times[0] && times[1] < times[2] && times[1] < times[3]) {
-            System.out.println("Player 2 is the winner with " + times[1] + " reaction time");
+            scores[1] += 4;
         } else if(times[2] < times[0] && times[2] < times[1] && times[2] < times[3]) {
-            System.out.println("Player 3 is the winner with " + times[2] + " reaction time"); 
+            scores[2] += 4;
         } else {
-            System.out.println("Player 4 is the winner with " + times[3] + " reaction time");  
+            scores[3] += 4;
         }
+
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 }
