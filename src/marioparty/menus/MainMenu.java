@@ -1,12 +1,12 @@
-package menus;
+package marioparty.menus;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
-import utils.AbstractGamepad;
-import utils.Sound;
+import marioparty.utils.AbstractGamepad;
+import marioparty.utils.Sound;
 
 public class MainMenu extends Menu {
 
