@@ -12,6 +12,7 @@ import marioparty.utils.Gamepad;
 import marioparty.menus.Leaderboard;
 import marioparty.games.Game;
 import marioparty.games.GameSelect;
+import marioparty.games.RPSGame;
 
 public class App {
 
