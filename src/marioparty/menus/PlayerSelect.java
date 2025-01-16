@@ -1,8 +1,4 @@
 package marioparty.menus;
-
-
-import marioparty.utils.Gamepad;
-import DLibX.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;

@@ -10,18 +10,21 @@ import java.awt.Font;
 
 public class Mashing extends Game {
     private DConsole d;
-    private AbstractGamepad[] player;
+    private AbstractGamepad[] players;
     int[] scores = new int[4];
     int[] count = new int[4];
 
     public Mashing(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) { // inheritance stuff
         super(dc, playerControllers, scores);
-        this.player = playerControllers;
+        this.players = playerControllers;
     }
-   
-        private boolean buttonIsDown = false;
 
-    ArrayList <Integer> orders = new ArrayList<>();
+    private boolean buttonIsDown1 = false;
+    private boolean buttonIsDown2 = false;
+    private boolean buttonIsDown3 = false;
+    private boolean buttonIsDown4 = false;
+
+    ArrayList<Integer> orders = new ArrayList<>();
 
     @Override
     public void play() { // game itself
@@ -32,41 +35,41 @@ public class Mashing extends Game {
             player.poll();
         }
 
-        if (this.player[0].getAButton()) { // player1 stuff
-            if (!buttonIsDown) {
+        if (this.players[0].getAButton()) { // player1 stuff
+            if (!buttonIsDown1) {
                 count[0]++;
             }
-            buttonIsDown = true;
+            buttonIsDown1 = true;
 
         } else {
-            buttonIsDown = false;
+            buttonIsDown1 = false;
         }
 
-        if (this.player[1].getAButton()) { // player2 stuff
-            if (!buttonIsDown) {
+        if (this.players[1].getAButton()) { // player2 stuff
+            if (!buttonIsDown2) {
                 count[1]++;
             }
-            buttonIsDown = true;
+            buttonIsDown2 = true;
         } else {
-            buttonIsDown = false;
+            buttonIsDown2 = false;
         }
 
-        if (this.player[2].getAButton()) { // player3 stuff
-            if (!buttonIsDown) {
+        if (this.players[2].getAButton()) { // player3 stuff
+            if (!buttonIsDown3) {
                 count[2]++;
             }
-            buttonIsDown = true;
+            buttonIsDown3 = true;
         } else {
-            buttonIsDown = false;
+            buttonIsDown3 = false;
         }
 
-        if (this.player[3].getAButton()) { // player4 stuff
-            if (!buttonIsDown) {
+        if (this.players[3].getAButton()) { // player4 stuff
+            if (!buttonIsDown4) {
                 count[3]++;
             }
-            buttonIsDown = true;
+            buttonIsDown4 = true;
         } else {
-            buttonIsDown = false;
+            buttonIsDown4 = false;
         }
 
         dc.setPaint(new Color(135, 206, 235));
@@ -86,16 +89,16 @@ public class Mashing extends Game {
         boolean gameDone = orders.size() == 4;
 
         for (int i = 0; i < count.length; i++) {
-            if (count[i] <= 150 && orders.contains(count[i])) { // scores
+            if (count[i] <= 50 && orders.contains(count[i])) { // scores
                 orders.add(count[i]);
             }
-        } 
+        }
 
-        if(gameDone){
-           for (int i = orders.size()-1; i <= 0; i--) {
-                scores[(orders.get(i))] += i+1;
-           }
-           App.switchGame(new Leaderboard(dc, playerControllers, scores));
+        if (gameDone) {
+            for (int i = orders.size() - 1; i <= 0; i--) {
+                scores[(orders.get(i))] += i + 1;
+            }
+            App.switchGame(new Leaderboard(dc, playerControllers, scores));
         }
     }
 }
