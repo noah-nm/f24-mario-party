@@ -226,13 +226,13 @@ public class RunningGame extends Game {
                     }
 
                     // game movement
-                    if (playerControllers[i].getXButton() && prevInput[i]) {
+                    if (playerControllers[i].getXButton() && prevInput[i] && playerPos[i] < this.dc.getWidth() - 50) {
                         playerPos[i] += 10;
                         tripImmunity[i] = 5;
                         prevInput[i] = false;
                     }
 
-                    if (playerControllers[i].getBButton() && !prevInput[i]) {
+                    if (playerControllers[i].getBButton() && !prevInput[i] && playerPos[i] < this.dc.getWidth() - 50) {
                         playerPos[i] += 10;
                         tripImmunity[i] = 5;
                         prevInput[i] = true;
