@@ -57,8 +57,9 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
-        this.addEntry(new MashingGame(dc, playerControllers, scores), "Mashing Game");
         this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
+        this.addEntry(new mashingGame(dc, playerControllers, scores), "Mashing Game");
+        this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction game");
         this.addEntry(this, "Game select");
         this.addEntry(this, "Game select");
         this.addEntry(this, "Game select");
