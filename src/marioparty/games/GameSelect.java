@@ -57,6 +57,7 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
+        this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
         this.addEntry(new mashingGame(dc, playerControllers, scores), "Mashing Game");
         this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction game");
         this.addEntry(new DodgeFromBullets(dc, playerControllers, scores), "Dodge bullets");
