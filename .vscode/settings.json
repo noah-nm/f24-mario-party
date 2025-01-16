@@ -5,6 +5,7 @@
   "java.project.outputPath": "bin",
   "java.project.referencedLibraries": [
 <<<<<<< HEAD
+<<<<<<< HEAD
     "c:\\Users\\wrightnat\\OneDrive - District School Board of Niagara\\f24-mario-party\\lib\\DLibX.jar",
     "c:\\Users\\wrightnat\\OneDrive - District School Board of Niagara\\f24-mario-party\\lib\\jaco-mp3-player-0.9.3.jar",
     "c:\\Users\\wrightnat\\OneDrive - District School Board of Niagara\\f24-mario-party\\lib\\jinput-2.0.10.jar"
@@ -13,6 +14,12 @@
     "lib\\jaco-mp3-player-0.9.3.jar",
     "lib\\jinput-2.0.10.jar"
 >>>>>>> 939935d90fd398b03b8a99a7fad0a33dc0e12d67
+=======
+    "lib\\DLibX.jar",
+    "lib\\jaco-mp3-player-0.9.3.jar",
+    "lib\\jinput-2.0.10.jar"
+
+>>>>>>> 061806f110fff587353ca7b81fac73e8d637ff2d
   ],
   "java.debug.settings.vmArgs": "-Djava.library.path=lib/native"
 }
