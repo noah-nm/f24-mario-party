@@ -21,7 +21,6 @@ public class RPSGame extends Game {
         dc.clear();
         dc.setFont(arialTitle);
 
-        System.out.println("hi");
         // Round 1: P1 vs P2
         while (winner1 == 0) {
             winner1 = playRound(0, 1, "P1 vs P2");
@@ -88,7 +87,6 @@ public class RPSGame extends Game {
                 }
             //}
         }
-        System.out.println("hey");
 
         int winner = -1;
 
