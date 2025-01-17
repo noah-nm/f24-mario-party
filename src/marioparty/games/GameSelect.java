@@ -60,13 +60,14 @@ public class GameSelect extends Game {
         this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
         this.addEntry(new mashingGame(dc, playerControllers, scores), "Mashing Game");
         this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction game");
-        this.addEntry(this, "Game select");
+        this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
         this.addEntry(this, "Game select");
         this.addEntry(this, "Game select");
 
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
         this.drawEntries();
+        this.dc.pause(15);
     }
 
     public void addEntry(Game game, String name) {
