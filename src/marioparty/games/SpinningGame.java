@@ -1,6 +1,8 @@
 package marioparty.games;
 
 import DLibX.*;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 import java.awt.*;
 import java.util.*;
@@ -86,6 +88,7 @@ public class SpinningGame extends Game {
         }
         dc.redraw();
         dc.pause(5000);
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
         
     }
 }
