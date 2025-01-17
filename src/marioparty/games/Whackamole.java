@@ -15,7 +15,6 @@ public class Whackamole extends Game{
     
     public Whackamole(DConsole dc, AbstractGamepad[] players, int[] scores) {
         super(dc, players, scores);
-        this.random = new Random();
     }
 
     @Override
