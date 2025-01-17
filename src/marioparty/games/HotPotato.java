@@ -1,15 +1,14 @@
-package games;
+package marioparty.games;
 
 import java.awt.Color;
 
-import DLibX.*;
-import net.java.games.input.Controller;
-import utils.AbstractGamepad;
+import DLibX.DConsole;
+import marioparty.utils.AbstractGamepad;
 
 public class HotPotato extends Game {
 
-    public HotPotato(DConsole dc, AbstractGamepad[] playerControllers) {
-        super(dc, playerControllers);
+    public HotPotato(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+        super(dc, playerControllers, scores);
     }
 
     /**
