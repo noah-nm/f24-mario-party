@@ -25,7 +25,6 @@ public class Whackamole extends Game{
         int y;
         int size = random.nextInt(30) + 15;
         long start;
-        long fastest;
         double[] times = new double[4];
         int[] amountOfMoles = new int[4];
 
@@ -34,6 +33,8 @@ public class Whackamole extends Game{
             while(true){
             x = random.nextInt(dc.getWidth() - size);
             y = random.nextInt(dc.getHeight() - size);
+            // I use nanoseconds because of errors with it displaying or sending the wrong amount of time
+            // Nanoseconds worked so I just used it
             start = System.nanoTime();
 
             dc.clear();
@@ -47,8 +48,8 @@ public class Whackamole extends Game{
             }
 
             while(dc.isMouseButton(1)) {
-                int mouseX = dc.getMouseX();
-                int mouseY = dc.getMouseY();
+                int mouseX = dc.getMouseXPosition();
+                int mouseY = dc.getMouseYPosition();
     
                 if (dc.isMouseButton(1)) {
                     if (mouseX >= x && mouseX <= x + size && mouseY >= y && mouseY <= y + size) {
