@@ -3,6 +3,8 @@ package marioparty.games;
 import java.awt.Color;
 
 import DLibX.DConsole;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
 public class HotPotato extends Game {
@@ -79,20 +81,40 @@ public class HotPotato extends Game {
                     potatoY = 400;
                 }
             }
+
+
+
             dc.setOrigin(DConsole.ORIGIN_CENTER);
             if (potatoX == 80 && potatoY == 400 && timeElapsed > 15000) {// red
                 dc.drawString("Red player loses!", 600, 400);
+                playing = false;
+                scores[1] += 1;
+                scores[2] += 1;
+                scores[3] += 1;
             } else if (potatoX == 650 && potatoY == 75 && timeElapsed > 15000) {// yellow
                 dc.drawString("Yellow player loses", 600, 400);
+                playing = false;
+                scores[0] += 1;
+                scores[1] += 1;
+                scores[2] += 1;
             } else if (potatoX == 1120 && potatoY == 400 && timeElapsed > 15000) {// blue
                 dc.drawString("Blue player loses", 600, 400);
+                playing = false;
+                scores[0] += 1;
+                scores[2] += 1;
+                scores[3] += 1;
             }
             if (potatoX == 650 && potatoY == 650 && timeElapsed > 15000) {// green
-                dc.drawString("Green player loses", 600, 400);
+                dc.drawString("Green player loses", 600, 400);   
+                playing = false;
+                scores[0] += 1;
+                scores[1] += 1;
+                scores[3] += 1;
             }
 
             dc.redraw();
         }
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 
 }
