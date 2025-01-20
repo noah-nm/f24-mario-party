@@ -18,7 +18,7 @@ public class grabCoin extends Game {
         this.players = playerControllers;
     }
 
-    Random rg = new Random();
+    private Random rg = new Random();
 
     private int coinX = rg.nextInt(1200);
     private int coinY = rg.nextInt(800);
