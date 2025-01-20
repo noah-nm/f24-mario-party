@@ -8,8 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.Font;
 
-public class Mashing extends Game {
-    private DConsole d;
+public class Mashing extends Game { 
     private AbstractGamepad[] players;
     private int[] count = new int[4];
 
@@ -18,6 +17,7 @@ public class Mashing extends Game {
         this.players = playerControllers;
     }
 
+    //no holding button down for points 
     private boolean buttonIsDown1 = false;
     private boolean buttonIsDown2 = false;
     private boolean buttonIsDown3 = false;
@@ -30,7 +30,7 @@ public class Mashing extends Game {
 
         dc.clear();
 
-        for (AbstractGamepad player : this.playerControllers) {
+        for (AbstractGamepad player : this.playerControllers) { //poll controller 
             player.poll();
         }
 

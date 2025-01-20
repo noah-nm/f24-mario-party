@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.util.Random;
 
 public class grabCoin extends Game {
-    private DConsole d;
     private AbstractGamepad[] players;
 
     public grabCoin(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) { // inheritance stuff
@@ -18,15 +17,15 @@ public class grabCoin extends Game {
         this.players = playerControllers;
     }
 
-    private Random rg = new Random();
+    private Random rg = new Random(); 
 
-    private int coinX = rg.nextInt(1200);
+    private int coinX = rg.nextInt(1200); //coin's X + Y
     private int coinY = rg.nextInt(800);
 
-    private int[] playerX = new int[] { 350, 900, 350, 900 };
+    private int[] playerX = new int[] { 350, 900, 350, 900 }; // player's X + Y
     private int[] playerY = new int[] { 250, 250, 500, 500 };
 
-    public void draw() {
+    public void draw() { // draw stuff
 
         // coins
         this.dc.setPaint(new Color(255, 215, 0));
@@ -52,13 +51,13 @@ public class grabCoin extends Game {
 
         dc.clear();
 
-        draw();
+        this.draw();
 
-        for (AbstractGamepad player : this.playerControllers) {
+        for (AbstractGamepad player : this.playerControllers) { //poll controller 
             player.poll();
         }
 
-        // Player 1
+        // Player 1 movement
         if (this.players[0].getAButton()) {
             playerY[0] = playerY[0] + 15;
         }
@@ -75,7 +74,7 @@ public class grabCoin extends Game {
             playerY[0] = playerY[0] - 15;
         }
 
-        // Player 2
+        // Player 2 movement
         if (this.players[1].getAButton()) {
             playerY[1] = playerY[1] + 15;
         }
@@ -92,7 +91,7 @@ public class grabCoin extends Game {
             playerY[1] = playerY[1] - 15;
         }
 
-        // Player 3
+        // Player 3 movement
         if (this.players[2].getAButton()) {
             playerY[2] = playerY[2] + 15;
         }
@@ -109,7 +108,7 @@ public class grabCoin extends Game {
             playerY[2] = playerY[2] - 15;
         }
 
-        // Player 4
+        // Player 4 movement
         if (this.players[3].getAButton()) {
             playerY[3] = playerY[3] + 15;
         }
@@ -132,17 +131,14 @@ public class grabCoin extends Game {
                     playerY[i] + 25 >= coinY &&
                     playerY[i] - 25 <= coinY) {
 
-                if (!orders.contains(i)) {
+                if (!orders.contains(i)) { //add to arraylist
                     orders.add(i);
                 }
 
             }
         }
 
-        dc.redraw();
-        dc.pause(20);
-
-        boolean gameDone = orders.size() == 4;
+        boolean gameDone = orders.size() == 4; //scoring 
 
         if (gameDone) {
             for (int i = orders.size() - 1; i >= 0; i--) {
@@ -150,6 +146,12 @@ public class grabCoin extends Game {
             }
             App.switchGame(new Leaderboard(dc, playerControllers, scores));
         }
+
+
+        dc.redraw();
+        dc.pause(20);
+
+       
 
     }
 }
