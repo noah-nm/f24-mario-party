@@ -17,9 +17,9 @@ public class GrabCoin extends Game {
         this.players = playerControllers;
     }
 
-    private Random rg = new Random(); 
+    private Random rg = new Random();
 
-    private int coinX = rg.nextInt(1200); //coin's X + Y
+    private int coinX = rg.nextInt(1200); // coin's X + Y
     private int coinY = rg.nextInt(800);
 
     private int[] playerX = new int[] { 350, 900, 350, 900 }; // player's X + Y
@@ -53,7 +53,7 @@ public class GrabCoin extends Game {
 
         this.draw();
 
-        for (AbstractGamepad player : this.playerControllers) { //poll controller 
+        for (AbstractGamepad player : this.playerControllers) { // poll controller
             player.poll();
         }
 
@@ -131,14 +131,14 @@ public class GrabCoin extends Game {
                     playerY[i] + 25 >= coinY &&
                     playerY[i] - 25 <= coinY) {
 
-                if (!orders.contains(i)) { //add to arraylist
+                if (!orders.contains(i)) { // add to arraylist
                     orders.add(i);
                 }
 
             }
         }
 
-        boolean gameDone = orders.size() == 4; //scoring 
+        boolean gameDone = orders.size() == 4; // scoring
 
         if (gameDone) {
             for (int i = orders.size() - 1; i >= 0; i--) {
@@ -147,11 +147,8 @@ public class GrabCoin extends Game {
             App.switchGame(new Leaderboard(dc, playerControllers, scores));
         }
 
-
         dc.redraw();
         dc.pause(20);
-
-       
 
     }
 }

@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.Font;
 
-public class Mashing extends Game { 
+public class Mashing extends Game {
     private AbstractGamepad[] players;
     private int[] count = new int[4];
 
@@ -17,7 +17,7 @@ public class Mashing extends Game {
         this.players = playerControllers;
     }
 
-    //no holding button down for points 
+    // no holding button down for points
     private boolean buttonIsDown1 = false;
     private boolean buttonIsDown2 = false;
     private boolean buttonIsDown3 = false;
@@ -30,7 +30,7 @@ public class Mashing extends Game {
 
         dc.clear();
 
-        for (AbstractGamepad player : this.playerControllers) { //poll controller 
+        for (AbstractGamepad player : this.playerControllers) { // poll controller
             player.poll();
         }
 
@@ -83,7 +83,7 @@ public class Mashing extends Game {
         this.dc.drawString(count[1], 900, 300);
         this.dc.drawString(count[2], 300, 600);
         this.dc.drawString(count[3], 900, 600);
-        
+
         boolean gameDone = orders.size() == 4;
 
         for (int i = 0; i < count.length; i++) {
@@ -98,11 +98,9 @@ public class Mashing extends Game {
             }
             App.switchGame(new Leaderboard(dc, playerControllers, scores));
 
+            dc.redraw();
+            dc.pause(20);
 
-        dc.redraw();
-        dc.pause(20);
-
-        
         }
     }
 }
