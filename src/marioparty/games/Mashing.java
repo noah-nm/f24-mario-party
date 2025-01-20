@@ -11,11 +11,10 @@ import java.awt.Font;
 public class Mashing extends Game {
     private DConsole d;
     private AbstractGamepad[] players;
-    int[] scores = new int[4];
-    int[] count = new int[4];
+    private int[] count = new int[4];
 
-    public Mashing(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) { // inheritance stuff
-        super(dc, playerControllers, scores);
+    public Mashing(DConsole dc, AbstractGamepad[] playerControllers, int[] playerScores) { // inheritance stuff
+        super(dc, playerControllers, playerScores);
         this.players = playerControllers;
     }
 
@@ -78,6 +77,8 @@ public class Mashing extends Game {
         Font arialTitle = new Font("arial", 1, 100);// displaying count
         this.dc.setFont(arialTitle);
         this.dc.setPaint(Color.BLACK);
+
+        this.dc.drawString("GET TO 50!", 600, 100);
         this.dc.drawString(count[0], 300, 300);
         this.dc.drawString(count[1], 900, 300);
         this.dc.drawString(count[2], 300, 600);
@@ -89,13 +90,13 @@ public class Mashing extends Game {
         boolean gameDone = orders.size() == 4;
 
         for (int i = 0; i < count.length; i++) {
-            if (count[i] <= 50 && orders.contains(count[i])) { // scores
-                orders.add(count[i]);
+            if (count[i] >= 50 && !orders.contains(i)) { // scores
+                orders.add(i);
             }
         }
 
         if (gameDone) {
-            for (int i = orders.size() - 1; i <= 0; i--) {
+            for (int i = orders.size() - 1; i >= 0; i--) {
                 scores[(orders.get(i))] += i + 1;
             }
             App.switchGame(new Leaderboard(dc, playerControllers, scores));
