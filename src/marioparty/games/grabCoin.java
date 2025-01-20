@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.util.Random;
 
-public class grabCoin extends Game {
+public class GrabCoin extends Game {
     private AbstractGamepad[] players;
 
-    public grabCoin(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) { // inheritance stuff
+    public GrabCoin(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) { // inheritance stuff
         super(dc, playerControllers, scores);
         this.players = playerControllers;
     }

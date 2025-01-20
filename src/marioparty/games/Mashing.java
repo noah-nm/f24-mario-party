@@ -83,10 +83,7 @@ public class Mashing extends Game {
         this.dc.drawString(count[1], 900, 300);
         this.dc.drawString(count[2], 300, 600);
         this.dc.drawString(count[3], 900, 600);
-
-        dc.redraw();
-        dc.pause(20);
-
+        
         boolean gameDone = orders.size() == 4;
 
         for (int i = 0; i < count.length; i++) {
@@ -100,6 +97,12 @@ public class Mashing extends Game {
                 scores[(orders.get(i))] += i + 1;
             }
             App.switchGame(new Leaderboard(dc, playerControllers, scores));
+
+
+        dc.redraw();
+        dc.pause(20);
+
+        
         }
     }
 }
