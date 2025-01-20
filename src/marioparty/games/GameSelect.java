@@ -57,7 +57,7 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
-        this.addEntry(this, "Game select");
+        this.addEntry(new Trivia(dc, playerControllers, scores), "Trivia");
         this.addEntry(this, "Game select");
         this.addEntry(this, "Game select");
         this.addEntry(this, "Game select");
