@@ -1,11 +1,13 @@
 package marioparty.games;
 
-import DLibX.*;
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import DLibX.DConsole;
 import marioparty.App;
 import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
-import java.awt.*;
-import java.util.*;
 
 public class SpinningGame extends Game {
 
@@ -35,21 +37,21 @@ public class SpinningGame extends Game {
         dc.drawString("Go!", 200, 100);
         dc.redraw();
 
-        //5 seconds of spinning
+        // 5 seconds of spinning
         while (System.currentTimeMillis() - startTime < 5000) {
             for (int i = 0; i < playerControllers.length; i++) {
-                    playerControllers[i].poll();
-                    double x = playerControllers[i].getLeftStickX();
-                    double y = playerControllers[i].getLeftStickY();
-                    double magnitude = Math.sqrt(x * x + y * y);
+                playerControllers[i].poll();
+                double x = playerControllers[i].getLeftStickX();
+                double y = playerControllers[i].getLeftStickY();
+                double magnitude = Math.sqrt(x * x + y * y);
 
-                    // Count spin only if magnitude is above a threshold
-                    if (magnitude > 0.8) {
-                        spins[i]++;
-                    }
-                
+                // Count spin only if magnitude is above a threshold
+                if (magnitude > 0.8) {
+                    spins[i]++;
+                }
+
             }
-            dc.pause(50); 
+            dc.pause(50);
         }
 
         // Determine winner
@@ -62,12 +64,12 @@ public class SpinningGame extends Game {
             }
         }
 
-        //Award points
+        // Award points
         ArrayList<Integer> spinList = new ArrayList<Integer>();
         for (int i = 0; i < spins.length; i++) {
             spinList.add(spins[i]);
         }
-        for(int i = 4; i > 0; i--){
+        for (int i = 4; i > 0; i--) {
             int maxIndex = spinList.indexOf(Collections.max(spinList));
             scores[maxIndex] += i;
             spinList.set(maxIndex, -1);
@@ -87,8 +89,8 @@ public class SpinningGame extends Game {
             dc.drawString("No Winner!", 50, 400);
         }
         dc.redraw();
-        dc.pause(5000);
+        dc.pause(3000);
         App.switchGame(new Leaderboard(dc, playerControllers, scores));
-        
+
     }
 }

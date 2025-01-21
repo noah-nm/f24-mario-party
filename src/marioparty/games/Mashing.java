@@ -1,12 +1,13 @@
 package marioparty.games;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
+
+import DLibX.DConsole; //1200 , 800
 import marioparty.App;
 import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
-import DLibX.DConsole; //1200 , 800
-import java.awt.Color;
-import java.util.ArrayList;
-import java.awt.Font;
 
 public class Mashing extends Game {
     private AbstractGamepad[] players;

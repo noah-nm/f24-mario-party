@@ -19,7 +19,7 @@ public class Leaderboard extends Game {
 
     public void play() {
         int[] workingScores = Arrays.copyOf(scores, 4);
-        Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
+        Color[] colors = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW };
         Font arialMedium = new Font("arial", Font.BOLD, 40);
 
         HashMap<Integer, Integer> indexToSortedValue = new HashMap<>();
@@ -58,7 +58,7 @@ public class Leaderboard extends Game {
         }
 
         dc.redraw();
-        dc.pause(5000);
+        dc.pause(3000);
         App.switchGame(new GameSelect(dc, playerControllers, workingScores));
     }
 }

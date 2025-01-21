@@ -113,8 +113,8 @@ public abstract class AbstractGamepad {
      * Returns how far the triggers are pressed down
      * 
      * It doesn't fully reach 1, so use something smaller for a threshold
-     
-     * If its positive, right is pressed down, 
+     * 
+     * If its positive, right is pressed down,
      * If its negative, left is down
      * 
      * @return ~ -1.0 to ~1.0

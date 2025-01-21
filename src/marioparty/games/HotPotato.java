@@ -82,8 +82,6 @@ public class HotPotato extends Game {
                 }
             }
 
-
-
             dc.setOrigin(DConsole.ORIGIN_CENTER);
             if (potatoX == 80 && potatoY == 400 && timeElapsed > 15000) {// red
                 dc.drawString("Red player loses!", 600, 400);
@@ -105,7 +103,7 @@ public class HotPotato extends Game {
                 scores[3] += 1;
             }
             if (potatoX == 650 && potatoY == 650 && timeElapsed > 15000) {// green
-                dc.drawString("Green player loses", 600, 400);   
+                dc.drawString("Green player loses", 600, 400);
                 playing = false;
                 scores[0] += 1;
                 scores[1] += 1;

@@ -1,4 +1,5 @@
 package marioparty;
+
 import java.util.ArrayList;
 
 import DLibX.DConsole;
@@ -20,7 +21,7 @@ public class App {
     Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
     int[] scores = new int[4];
     static Game currentGame;
-  
+
     DConsole dc = new DConsole("Mario Party", 1200, 800, true);
 
     boolean running = true;
@@ -33,7 +34,7 @@ public class App {
     public void run() {
         initGameControllers();
 
-        if(gamepads.size() == 0) {
+        if (gamepads.size() == 0) {
             gamepads.add(new DebugGamepad());
         }
 
@@ -49,16 +50,18 @@ public class App {
         PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
         playerSelect.play();
 
-        // define new assigned players array, this array should be used in place of the gamepads array list for further screens
+        // define new assigned players array, this array should be used in place of the
+        // gamepads array list for further screens
         AbstractGamepad[] players = playerSelect.getPlayers();
 
-        //leaderboard
+        // leaderboard
         Leaderboard leaderboard = new Leaderboard(dc, players, scores);
         leaderboard.play();
 
         currentGame = new GameSelect(dc, players, scores);
 
-        // used to test player selection screen, can be removed once another screen is added here
+        // used to test player selection screen, can be removed once another screen is
+        // added here
         while (running) {
             dc.clear();
             currentGame.play();
