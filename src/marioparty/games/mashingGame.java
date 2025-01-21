@@ -124,9 +124,9 @@ public class MashingGame extends Game {
             }
 
             this.dc.redraw();
-            this.dc.pause(10);
+            DConsole.pause(10);
         }
-        this.dc.pause(3000);
+        DConsole.pause(3000);
         App.switchGame(new GameSelect(dc, playerControllers, scores));
     }
 

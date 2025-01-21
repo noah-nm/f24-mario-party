@@ -148,7 +148,7 @@ public class GrabCoin extends Game {
         }
 
         this.dc.redraw();
-        this.dc.pause(20);
+        DConsole.pause(20);
 
     }
 }

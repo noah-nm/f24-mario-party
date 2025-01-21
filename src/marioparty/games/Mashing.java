@@ -100,7 +100,7 @@ public class Mashing extends Game {
             App.switchGame(new Leaderboard(dc, playerControllers, scores));
 
             dc.redraw();
-            dc.pause(20);
+            DConsole.pause(20);
 
         }
     }

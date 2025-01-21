@@ -76,7 +76,7 @@ public class GameSelect extends Game {
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
         this.drawEntries();
-        this.dc.pause(15);
+        DConsole.pause(15);
     }
 
     public void addEntry(Game game, String name) {

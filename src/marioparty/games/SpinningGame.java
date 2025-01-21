@@ -31,7 +31,7 @@ public class SpinningGame extends Game {
         this.dc.drawString("You have 5 seconds!", 50, 240);
         this.dc.drawImage("src\\marioparty\\games\\images\\Soup.png", 50, 300);
         this.dc.redraw();
-        this.dc.pause(3000);
+        DConsole.pause(3000);
 
         this.dc.clear();
         this.dc.drawString("Go!", 200, 100);
@@ -51,7 +51,7 @@ public class SpinningGame extends Game {
                 }
 
             }
-            dc.pause(50);
+            DConsole.pause(50);
         }
 
         // Determine winner
@@ -89,7 +89,7 @@ public class SpinningGame extends Game {
             this.dc.drawString("No Winner!", 50, 400);
         }
         this.dc.redraw();
-        this.dc.pause(3000);
+        DConsole.pause(3000);
         App.switchGame(new Leaderboard(dc, playerControllers, scores));
 
     }

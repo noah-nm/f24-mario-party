@@ -46,7 +46,7 @@ public class RPSGame extends Game {
         scores[winner2 - 1] += 2;
         scores[finalWinner - 1] += 2;
         
-        this.dc.pause(3000);
+        DConsole.pause(3000);
     }
 
     private int playRound(int playerAIndex, int playerBIndex, String roundTitle) {
@@ -118,7 +118,7 @@ public class RPSGame extends Game {
         }
         this.dc.redraw();
         // Wait 3 seconds before clearing
-        this.dc.pause(3000);
+        DConsole.pause(3000);
 
         if (winner == 1) {
             return playerAIndex + 1;

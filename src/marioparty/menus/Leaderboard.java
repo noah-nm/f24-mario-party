@@ -58,7 +58,7 @@ public class Leaderboard extends Game {
         }
 
         this.dc.redraw();
-        this.dc.pause(3000);
+        DConsole.pause(3000);
         App.switchGame(new GameSelect(dc, playerControllers, workingScores));
     }
 }
