@@ -362,7 +362,7 @@ public class Trivia extends Game{
                 }
             }
         }
-        App.switchGame(new GameSelect(dc, playerControllers, scores));
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
         
     }
 }
