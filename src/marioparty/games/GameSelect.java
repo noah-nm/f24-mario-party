@@ -67,6 +67,7 @@ public class GameSelect extends Game {
         this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
         this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction game");
         this.addEntry(new SpinningGame(dc, playerControllers, scores), "Spinning game");
+        this.addEntry(new Trivia(dc, playerControllers, scores), "Trivia Game");
         this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
         this.addEntry(new EscapeGame(dc, playerControllers, scores), "Escape Game");
         this.addEntry(this, "Game select");
