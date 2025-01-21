@@ -1,4 +1,4 @@
-package utils;
+package marioparty.utils;
 
 import java.io.File;
 

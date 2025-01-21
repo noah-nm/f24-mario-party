@@ -1,23 +1,19 @@
-package games;
+package marioparty.games;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
 import DLibX.DConsole;
-import utils.AbstractGamepad;
+import marioparty.utils.AbstractGamepad;
 
 public class CatchObjects extends Game {
 
-  public CatchObjects(DConsole dc, AbstractGamepad[] playerControllers) {
-    super(dc, playerControllers);
+  public CatchObjects(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+    super(dc, playerControllers, scores);
   }
 
-
-  
   public void play() {
-
-    
 
     dc.setOrigin(DConsole.ORIGIN_BOTTOM_LEFT);
 
@@ -58,7 +54,7 @@ public class CatchObjects extends Game {
         boxxd = boxxd - 20;
       }
       if (playerControllers[1].getBButton()) {
-        boxxd = boxxd +20;
+        boxxd = boxxd + 20;
       }
       if (playerControllers[2].getXButton()) {
         boxxe = boxxe - 20;
@@ -71,14 +67,6 @@ public class CatchObjects extends Game {
       }
       if (playerControllers[3].getBButton()) {
         boxxf = boxxf + 20;
-      }
-
-      if(dc.isKeyPressed('a')) {
-        boxxc = boxxc - 20;
-      }
-
-      if(dc.isKeyPressed('d')) {
-        boxxc = boxxc + 20;
       }
 
       // Boundary conditions for boxes
