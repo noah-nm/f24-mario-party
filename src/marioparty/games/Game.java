@@ -1,5 +1,6 @@
 package marioparty.games;
 
+
 import DLibX.DConsole;
 import marioparty.utils.AbstractGamepad;
 
