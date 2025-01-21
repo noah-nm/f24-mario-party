@@ -29,7 +29,7 @@ public class Mashing extends Game {
     @Override
     public void play() { // game itself
 
-        dc.clear();
+        this.dc.clear();
 
         for (AbstractGamepad player : this.playerControllers) { // poll controller
             player.poll();
@@ -72,8 +72,8 @@ public class Mashing extends Game {
             buttonIsDown4 = false;
         }
 
-        dc.setPaint(new Color(135, 206, 235));
-        dc.fillRect(500, 500, 50000, 500000);
+        this.dc.setPaint(new Color(135, 206, 235));
+        this.dc.fillRect(500, 500, 50000, 500000);
 
         Font arialTitle = new Font("arial", 1, 100);// displaying count
         this.dc.setFont(arialTitle);

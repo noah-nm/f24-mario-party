@@ -19,8 +19,8 @@ public class RPSGame extends Game {
         int winner2 = 0;
         int finalWinner = 0;
 
-        dc.clear();
-        dc.setFont(arialTitle);
+        this.dc.clear();
+        this.dc.setFont(arialTitle);
 
         // Round 1: P1 vs P2
         while (winner1 == 0) {
@@ -38,15 +38,15 @@ public class RPSGame extends Game {
         }
 
         // Display final winner
-        dc.clear();
-        dc.drawString("The Final Winner is Player " + finalWinner + "!", 50, 200);
-        dc.redraw();
+        this.dc.clear();
+        this.dc.drawString("The Final Winner is Player " + finalWinner + "!", 50, 200);
+        this.dc.redraw();
 
         scores[winner1 - 1] += 2;
         scores[winner2 - 1] += 2;
         scores[finalWinner - 1] += 2;
         
-        dc.pause(3000);
+        this.dc.pause(3000);
     }
 
     private int playRound(int playerAIndex, int playerBIndex, String roundTitle) {
@@ -55,12 +55,12 @@ public class RPSGame extends Game {
         String[] choices = { "Rock", "Paper", "Scissors" };
         Font arialMedium = new Font("arial", 1, 40);
 
-        dc.clear();
-        dc.drawString(roundTitle, 50, 100);
-        dc.drawString("Rock, Paper, Scissors, Shoot!", 50, 200);
-        dc.setFont(arialMedium);
-        dc.drawString("Rock = x, Paper = y, Scissors = a", 50, 300);
-        dc.redraw();
+        this.dc.clear();
+        this.dc.drawString(roundTitle, 50, 100);
+        this.dc.drawString("Rock, Paper, Scissors, Shoot!", 50, 200);
+        this.dc.setFont(arialMedium);
+        this.dc.drawString("Rock = x, Paper = y, Scissors = a", 50, 300);
+        this.dc.redraw();
 
         while (playerAChoice == 0 || playerBChoice == 0) {
             for (AbstractGamepad playerController : playerControllers) {
@@ -68,21 +68,21 @@ public class RPSGame extends Game {
             }
 
             // if (playerAChoice == 0) {
-            if (playerControllers[playerAIndex].getXButton()) {
+            if (this.playerControllers[playerAIndex].getXButton()) {
                 playerAChoice = 1; // Rock
-            } else if (playerControllers[playerAIndex].getYButton()) {
+            } else if (this.playerControllers[playerAIndex].getYButton()) {
                 playerAChoice = 2; // Paper
-            } else if (playerControllers[playerAIndex].getAButton()) {
+            } else if (this.playerControllers[playerAIndex].getAButton()) {
                 playerAChoice = 3; // Scissors
             }
             // }
 
             // if (playerBChoice == 0) {
-            if (playerControllers[playerBIndex].getXButton()) {
+            if (this.playerControllers[playerBIndex].getXButton()) {
                 playerBChoice = 1; // Rock
-            } else if (playerControllers[playerBIndex].getYButton()) {
+            } else if (this.playerControllers[playerBIndex].getYButton()) {
                 playerBChoice = 2; // Paper
-            } else if (playerControllers[playerBIndex].getAButton()) {
+            } else if (this.playerControllers[playerBIndex].getAButton()) {
                 playerBChoice = 3; // Scissors
             }
             // }
@@ -101,12 +101,12 @@ public class RPSGame extends Game {
             winner = 2;
         }
 
-        dc.clear();
-        dc.drawString("Player " + (playerAIndex + 1) + " chose " + choices[playerAChoice - 1], 50, 200);
-        dc.drawString("Player " + (playerBIndex + 1) + " chose " + choices[playerBChoice - 1], 50, 300);
+        this.dc.clear();
+        this.dc.drawString("Player " + (playerAIndex + 1) + " chose " + choices[playerAChoice - 1], 50, 200);
+        this.dc.drawString("Player " + (playerBIndex + 1) + " chose " + choices[playerBChoice - 1], 50, 300);
 
         if (winner == 0) {
-            dc.drawString("It's a tie!", 50, 400);
+            this.dc.drawString("It's a tie!", 50, 400);
         } else {
             int winningPlayer = 0;
             if (winner == 1) {
@@ -114,11 +114,11 @@ public class RPSGame extends Game {
             } else {
                 winningPlayer = playerBIndex + 1; // Player B wins
             }
-            dc.drawString("Winner is Player " + winningPlayer, 50, 400);
+            this.dc.drawString("Winner is Player " + winningPlayer, 50, 400);
         }
-        dc.redraw();
+        this.dc.redraw();
         // Wait 3 seconds before clearing
-        dc.pause(3000);
+        this.dc.pause(3000);
 
         if (winner == 1) {
             return playerAIndex + 1;

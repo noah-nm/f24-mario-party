@@ -29,21 +29,21 @@ public class ReactionGame extends Game {
             x = random.nextInt(dc.getWidth() - size);
             y = random.nextInt(dc.getHeight() - size);
 
-            dc.clear();
-            dc.setPaint(Color.RED);
-            dc.fillEllipse(x, y, size, size);
-            dc.redraw();
+            this.dc.clear();
+            this.dc.setPaint(Color.RED);
+            this.dc.fillEllipse(x, y, size, size);
+            this.dc.redraw();
 
             start = System.nanoTime();
 
             // I don't know how to implement controller but otherwise this is 4 player if we
             // use mouse
             // It compares all 4 players scores to select who wins
-            while (!dc.isMouseButton(1)) {
+            while (!this.dc.isMouseButton(1)) {
                 DConsole.pause(10);
             }
 
-            while (dc.isMouseButton(1)) {
+            while (this.dc.isMouseButton(1)) {
                 DConsole.pause(10);
             }
 
@@ -53,8 +53,8 @@ public class ReactionGame extends Game {
             times[rounds] = fastestSeconds;
             System.out.println("Reaction: " + fastestSeconds + " time");
         }
-        dc.clear();
-        dc.redraw();
+        this.dc.clear();
+        this.dc.redraw();
 
         // increments scores
         if (times[0] < times[1] && times[0] < times[2] && times[0] < times[3]) {

@@ -33,10 +33,10 @@ public class Whackamole extends Game {
                 // Nanoseconds worked so I just used it
                 start = System.nanoTime();
 
-                dc.clear();
-                dc.setPaint(Color.RED);
-                dc.fillEllipse(x, y, size, size);
-                dc.redraw();
+                this.dc.clear();
+                this.dc.setPaint(Color.RED);
+                this.dc.fillEllipse(x, y, size, size);
+                this.dc.redraw();
 
                 while (!dc.isMouseButton(1)) {
                     DConsole.pause(10);

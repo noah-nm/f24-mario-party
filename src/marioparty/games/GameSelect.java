@@ -73,8 +73,6 @@ public class GameSelect extends Game {
         this.addEntry(new SpinningGame(dc, playerControllers, scores), "Spinning game");
         this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
 
-        // this.addEntry(this, "Game select"); // add this line to
-
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
         this.drawEntries();
