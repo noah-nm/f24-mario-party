@@ -2,6 +2,7 @@ package marioparty.games;
 
 import DLibX.DConsole;
 import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 import java.io.File;
 import java.io.BufferedReader;
