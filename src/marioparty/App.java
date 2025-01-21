@@ -2,17 +2,16 @@ package marioparty;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
+import marioparty.games.Game;
+import marioparty.games.GameSelect;
+import marioparty.menus.Leaderboard;
 import marioparty.menus.MainMenu;
 import marioparty.menus.PlayerSelect;
-import net.java.games.input.Controller;
-import net.java.games.input.ControllerEnvironment;
 import marioparty.utils.AbstractGamepad;
 import marioparty.utils.DebugGamepad;
 import marioparty.utils.Gamepad;
-import marioparty.menus.Leaderboard;
-import marioparty.games.Game;
-import marioparty.games.GameSelect;
-import marioparty.games.RPSGame;
+import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
 
 public class App {
 
