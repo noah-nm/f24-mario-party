@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import DLibX.DConsole;
+import marioparty.App;
 import marioparty.games.Game;
+import marioparty.games.GameSelect;
 import marioparty.utils.AbstractGamepad;
 
 public class Leaderboard extends Game {
@@ -57,5 +59,6 @@ public class Leaderboard extends Game {
 
         dc.redraw();
         dc.pause(5000);
+        App.switchGame(new GameSelect(dc, playerControllers, workingScores));
     }
 }

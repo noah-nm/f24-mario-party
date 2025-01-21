@@ -2,16 +2,16 @@ package marioparty;
 import java.util.ArrayList;
 
 import DLibX.DConsole;
+import marioparty.games.Game;
+import marioparty.games.GameSelect;
+import marioparty.menus.Leaderboard;
 import marioparty.menus.MainMenu;
 import marioparty.menus.PlayerSelect;
-import net.java.games.input.Controller;
-import net.java.games.input.ControllerEnvironment;
 import marioparty.utils.AbstractGamepad;
 import marioparty.utils.DebugGamepad;
 import marioparty.utils.Gamepad;
-import marioparty.menus.Leaderboard;
-import marioparty.games.Game;
-import marioparty.games.GameSelect;
+import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
 
 public class App {
 
@@ -41,36 +41,28 @@ public class App {
         dc.setResizable(false);
         dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
 
+        // main menu
+        MainMenu mainMenu = new MainMenu(dc, gamepads);
+        mainMenu.play();
+
+        // player select
+        PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
+        playerSelect.play();
+
+        // define new assigned players array, this array should be used in place of the gamepads array list for further screens
+        AbstractGamepad[] players = playerSelect.getPlayers();
+
+        //leaderboard
+        Leaderboard leaderboard = new Leaderboard(dc, players, scores);
+        leaderboard.play();
+
+        currentGame = new GameSelect(dc, players, scores);
+
+        // used to test player selection screen, can be removed once another screen is added here
         while (running) {
-
-            // initialization
-            initGameControllers();
-            dc.setResizable(false);
-
-
-            // main menu
-            MainMenu mainMenu = new MainMenu(dc, gamepads);
-            mainMenu.play();
-
-            // player select
-            PlayerSelect playerSelect = new PlayerSelect(dc, gamepads);
-            playerSelect.play();
-
-            // define new assigned players array, this array should be used in place of the gamepads array list for further screens
-            AbstractGamepad[] players = playerSelect.getPlayers();
-
-            //leaderboard
-            Leaderboard leaderboard = new Leaderboard(dc, players, scores);
-            leaderboard.play();
-
-            currentGame = new GameSelect(dc, players, scores);
-
-            // used to test player selection screen, can be removed once another screen is added here
-            while (true) {
-                dc.clear();
-                currentGame.play();
-                dc.redraw();
-            }
+            dc.clear();
+            currentGame.play();
+            dc.redraw();
         }
     }
 
