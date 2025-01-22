@@ -57,13 +57,12 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
-
+   
+        this.addEntry(new BiggestNumber(dc, playerControllers, scores), "Big Number");
         this.addEntry(new Mashing(dc, playerControllers, scores), "Button Mashing Game");
         this.addEntry(new MashingGame(dc, playerControllers, scores), "Mash");
 
         // VETO: No mouse controlled games
-        // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
-        // game");
         // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
         // game");
 
@@ -78,6 +77,7 @@ public class GameSelect extends Game {
         this.addEntry(new GuessingGame(dc, playerControllers, scores), "Guessing Game");
         this.addEntry(new Trivia(dc, playerControllers, scores), "Trivia Game");
         this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
+        this.addEntry(new CatchObjects(dc, playerControllers, scores), "Falling Objects");
         this.addEntry(new EscapeGame(dc, playerControllers, scores), "Escape Game");
 
 
