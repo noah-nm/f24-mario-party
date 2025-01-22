@@ -55,6 +55,13 @@ public class App {
         leaderboard.play();
 
         currentGame = new GameSelect(dc, players, scores);
+
+        // main game loop
+        while (running) {
+            dc.clear();
+            currentGame.play();
+            dc.redraw();
+        }
     }
 
     /**
