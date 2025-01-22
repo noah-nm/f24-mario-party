@@ -70,9 +70,9 @@ public class GameSelect extends Game {
         this.addEntry(new GuessingGame(dc, playerControllers, scores), "Guessing Game");
         this.addEntry(new Trivia(dc, playerControllers, scores), "Trivia Game");
         this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
+        this.addEntry(new SIMON(dc, playerControllers, scores), "Simon");
         this.addEntry(new CatchObjects(dc, playerControllers, scores), "Falling Objects");
         this.addEntry(new EscapeGame(dc, playerControllers, scores), "Escape Game");
-
 
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
