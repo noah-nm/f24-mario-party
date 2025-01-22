@@ -76,6 +76,7 @@ public class CatchObjects extends Game {
 
     dc.setOrigin(DConsole.ORIGIN_BOTTOM_LEFT);
 
+    //balls
     Random randGen = new Random();
     ArrayList<Ball> balls = new ArrayList<>();
 
@@ -85,15 +86,18 @@ public class CatchObjects extends Game {
       balls.add(newBall);
     }
 
+    //x values for the players
     int x2 = 500;
     int x1 = 300;
     int x3 = 700;
     int x4 = 900;
+    //points
     int collect1 = 0;
     int collect2 = 0;
     int collect3 = 0;
     int collect4 = 0;
     int[] place = new int[4];
+    //keeps track of the finished players
     boolean printed0 = false;
     boolean printed1 = false;
     boolean printed2 = false;
@@ -226,6 +230,7 @@ public class CatchObjects extends Game {
       dc.drawString("Box 3: " + collect3, 1040, 260);
       dc.drawString("Box 4: " + collect4, 1040, 290);
 
+      //scores
       if (rank == 4) {
         scores[0] += place[0];
         scores[1] += place[1];
