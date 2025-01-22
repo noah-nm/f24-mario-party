@@ -2,6 +2,8 @@ package marioparty.games;
 
 import java.util.ArrayList;
 import DLibX.*;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 
 import java.awt.Font;
 
@@ -51,9 +53,8 @@ public class RPSGame extends Game {
         scores[finalWinner - 1] += 2;
 
         dc.pause(5000);
-        DConsole.pause(3000);
-
-    }
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
+     }
 
     private int playRound(int playerAIndex, int playerBIndex, String roundTitle) {
         int playerAChoice = 0;
