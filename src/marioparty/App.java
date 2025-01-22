@@ -50,22 +50,11 @@ public class App {
         // gamepads array list for further screens
         AbstractGamepad[] players = playerSelect.getPlayers();
 
-        // test 
-        scores[2] = 19;
-
         // leaderboard
         Leaderboard leaderboard = new Leaderboard(dc, players, scores);
         leaderboard.play();
 
         currentGame = new GameSelect(dc, players, scores);
-
-        // used to test player selection screen, can be removed once another screen is
-        // added here
-        while (running) {
-            dc.clear();
-            currentGame.play();
-            dc.redraw();
-        }
     }
 
     /**

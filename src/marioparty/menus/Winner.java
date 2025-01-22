@@ -40,13 +40,14 @@ public class Winner extends Game {
         this.dc.fillRect(0, 0, this.dc.getWidth(), this.dc.getHeight());
 
         // say who won
+        this.dc.setOrigin(DConsole.ORIGIN_CENTER);
         this.dc.setPaint(Color.RED);
         this.dc.setFont(arialTitle);
-        this.dc.drawString("The Winner is Player " + getWinner() + "!!!!", this.dc.getWidth() / 2, this.dc.getHeight() / 2);
+        this.dc.drawString("The Winner is Player " + getWinner() + "!", this.dc.getWidth() / 2, this.dc.getHeight() / 2);
 
         // exit propt
         this.dc.setFont(subText);
-        this.dc.drawString("Press X to Exit", this.dc.getWidth(), this.dc.getWidth() + 100);
+        this.dc.drawString("Press X to Exit", this.dc.getWidth() / 2, this.dc.getHeight() / 2 + 100);
 
         dc.redraw();
         DConsole.pause(20);

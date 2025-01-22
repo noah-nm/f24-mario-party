@@ -6,6 +6,7 @@ import java.awt.Font;
 import DLibX.DConsole;
 import marioparty.App;
 import marioparty.utils.AbstractGamepad;
+import marioparty.menus.Leaderboard;;
 
 public class MashingGame extends Game {
 
@@ -127,7 +128,7 @@ public class MashingGame extends Game {
             DConsole.pause(10);
         }
         DConsole.pause(3000);
-        App.switchGame(new GameSelect(dc, playerControllers, scores));
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 
     private void showWinner(DConsole dc, String player, Color color) {
