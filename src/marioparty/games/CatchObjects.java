@@ -15,6 +15,63 @@ public class CatchObjects extends Game {
     super(dc, playerControllers, scores);
   }
 
+  class Ball {
+
+    // Instance variables
+    private double x;
+    private double y;
+    private int size;
+    private int xChange;
+    private int yChange;
+    private DConsole d;
+    private Random r;
+    private Color col;
+
+    public Ball(DConsole dc, Random r) {
+      this.d = dc;
+      this.r = r;
+
+      this.setPosition();
+
+      this.size = this.r.nextInt(25) + 10;
+      this.xChange = this.r.nextInt(18) - 5;
+      this.yChange = this.r.nextInt(23) + 1;
+      this.col = new Color(this.r.nextInt(255), this.r.nextInt(255), this.r.nextInt(255), 255);
+    }
+
+    public void draw() {
+      this.d.setPaint(this.col);
+      this.d.fillEllipse(this.x, this.y, this.size, this.size);
+    }
+
+    public void move() {
+      this.y += this.yChange;
+      this.x += this.xChange;
+
+      if (this.y > this.d.getHeight() + this.size) {
+        this.resetPosition();
+      }
+    }
+
+    public void resetPosition() {
+      this.x = this.r.nextInt(this.d.getWidth());
+      this.y = -this.size;
+    }
+
+    public double getX() {
+      return this.x;
+    }
+
+    public double getY() {
+      return this.y;
+    }
+
+    private void setPosition() {
+      this.x = this.r.nextInt(this.d.getWidth());
+      this.y = this.r.nextInt(this.d.getHeight());
+    }
+  }
+
   public void play() {
 
     dc.setOrigin(DConsole.ORIGIN_BOTTOM_LEFT);
@@ -28,11 +85,14 @@ public class CatchObjects extends Game {
       balls.add(newBall);
     }
 
-    int boxxd = 500;
-    int boxxc = 300;
-    int boxxe = 700;
-    int boxxf = 900;
-    int collect1 = 0, collect2 = 0, collect3 = 0, collect4 = 0;
+    int x2 = 500;
+    int x1 = 300;
+    int x3 = 700;
+    int x4 = 900;
+    int collect1 = 0;
+    int collect2 = 0;
+    int collect3 = 0;
+    int collect4 = 0;
     int[] place = new int[4];
     boolean printed0 = false;
     boolean printed1 = false;
@@ -53,35 +113,35 @@ public class CatchObjects extends Game {
       // Controls for boxes
 
       if (playerControllers[0].getXButton()) {
-        boxxc = boxxc - 20;
+        x1 = x1 - 20;
       }
       if (playerControllers[0].getBButton()) {
-        boxxc = boxxc + 20;
+        x1 = x1 + 20;
       }
       if (playerControllers[1].getXButton()) {
-        boxxd = boxxd - 20;
+        x2 = x2 - 20;
       }
       if (playerControllers[1].getBButton()) {
-        boxxd = boxxd + 20;
+        x2 = x2 + 20;
       }
       if (playerControllers[2].getXButton()) {
-        boxxe = boxxe - 20;
+        x3 = x3 - 20;
       }
       if (playerControllers[2].getBButton()) {
-        boxxe = boxxe + 20;
+        x3 = x3 + 20;
       }
       if (playerControllers[3].getXButton()) {
-        boxxf = boxxf - 20;
+        x4 = x4 - 20;
       }
       if (playerControllers[3].getBButton()) {
-        boxxf = boxxf + 20;
+        x4 = x4 + 20;
       }
 
       // Boundary conditions for boxes
-      boxxc = Math.max(0, Math.min(1200, boxxc));
-      boxxd = Math.max(0, Math.min(1200, boxxd));
-      boxxe = Math.max(0, Math.min(1200, boxxe));
-      boxxf = Math.max(0, Math.min(1200, boxxf));
+      x1 = Math.max(0, Math.min(1200, x1));
+      x2 = Math.max(0, Math.min(1200, x2));
+      x3 = Math.max(0, Math.min(1200, x3));
+      x4 = Math.max(0, Math.min(1200, x4));
 
       // Draw background
       dc.setPaint(colq);
@@ -89,16 +149,16 @@ public class CatchObjects extends Game {
 
       // Draw boxes
       dc.setPaint(Color.RED);
-      dc.fillRect(boxxc, 700, 100, 20);
+      dc.fillRect(x1, 700, 100, 20);
 
       dc.setPaint(Color.BLUE);
-      dc.fillRect(boxxd, 700, 100, 20);
+      dc.fillRect(x2, 700, 100, 20);
 
       dc.setPaint(Color.GREEN);
-      dc.fillRect(boxxe, 700, 100, 20);
+      dc.fillRect(x3, 700, 100, 20);
 
       dc.setPaint(Color.YELLOW);
-      dc.fillRect(boxxf, 700, 100, 20);
+      dc.fillRect(x4, 700, 100, 20);
 
       // Move and draw balls
       for (Ball ball : balls) {
@@ -111,22 +171,22 @@ public class CatchObjects extends Game {
         double x = ball.getX();
         double y = ball.getY();
 
-        if (x > boxxc && x < (boxxc + 100) && y > 700 && y < 730) {
+        if (x > x1 && x < (x1 + 100) && y > 700 && y < 730) {
           collect1++;
           ball.resetPosition();
         }
 
-        if (x > boxxd && x < (boxxd + 100) && y > 700 && y < 730) {
+        if (x > x2 && x < (x2 + 100) && y > 700 && y < 730) {
           collect2++;
           ball.resetPosition();
         }
 
-        if (x > boxxe && x < (boxxe + 100) && y > 700 && y < 730) {
+        if (x > x3 && x < (x3 + 100) && y > 700 && y < 730) {
           collect3++;
           ball.resetPosition();
         }
 
-        if (x > boxxf && x < (boxxf + 100) && y > 700 && y < 730) {
+        if (x > x4 && x < ( x4 + 100) && y > 700 && y < 730) {
           collect4++;
           ball.resetPosition();
         }
@@ -182,61 +242,4 @@ public class CatchObjects extends Game {
     App.switchGame(new Leaderboard(dc, playerControllers, scores));
   }
 
-}
-
-class Ball {
-
-  // Instance variables
-  private double x;
-  private double y;
-  private int size;
-  private int xChange;
-  private int yChange;
-  private DConsole d;
-  private Random r;
-  private Color col;
-
-  public Ball(DConsole dc, Random r) {
-    this.d = dc;
-    this.r = r;
-
-    this.setPosition();
-
-    this.size = this.r.nextInt(25) + 10;
-    this.xChange = this.r.nextInt(18) - 5;
-    this.yChange = this.r.nextInt(23) + 1;
-    this.col = new Color(this.r.nextInt(255), this.r.nextInt(255), this.r.nextInt(255), 255);
-  }
-
-  public void draw() {
-    this.d.setPaint(this.col);
-    this.d.fillEllipse(this.x, this.y, this.size, this.size);
-  }
-
-  public void move() {
-    this.y += this.yChange;
-    this.x += this.xChange;
-
-    if (this.y > this.d.getHeight() + this.size) {
-      this.resetPosition();
-    }
-  }
-
-  public void resetPosition() {
-    this.x = this.r.nextInt(this.d.getWidth());
-    this.y = -this.size;
-  }
-
-  public double getX() {
-    return this.x;
-  }
-
-  public double getY() {
-    return this.y;
-  }
-
-  private void setPosition() {
-    this.x = this.r.nextInt(this.d.getWidth());
-    this.y = this.r.nextInt(this.d.getHeight());
-  }
 }
