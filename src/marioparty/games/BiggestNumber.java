@@ -59,7 +59,7 @@ public class BiggestNumber extends Game {
             if (number0 != guess) {
                 if (playerControllers[0].getAButton()) {
                     if (!buttonLow0) {
-                        number0 = r.nextInt(20);
+                        number0 = r.nextInt(15) + 1;
                         count0++;
                     }
                     buttonLow0 = true;
@@ -81,7 +81,7 @@ public class BiggestNumber extends Game {
             if (number1 != guess) {
                 if (playerControllers[1].getAButton()) {
                     if (!buttonLow1) {
-                        number1 = r.nextInt(20);
+                        number1 = r.nextInt(15) + 1;
                         count1++;
                     }
                     buttonLow1 = true;
@@ -103,7 +103,7 @@ public class BiggestNumber extends Game {
             if (number2 != guess) {
                 if (playerControllers[2].getAButton()) {
                     if (!buttonLow2) {
-                        number2 = r.nextInt(20);
+                        number2 = r.nextInt(15) + 1;
                         count2++;
                     }
                     buttonLow2 = true;
@@ -125,7 +125,7 @@ public class BiggestNumber extends Game {
             if (number3 != guess) {
                 if (playerControllers[3].getAButton()) {
                     if (!buttonLow3) {
-                        number3 = r.nextInt(20);
+                        number3 = r.nextInt(15) + 1;
                         count3++;
                     }
                     buttonLow3 = true;
@@ -180,12 +180,11 @@ public class BiggestNumber extends Game {
                 scores[3] += place[3];
                 break;
             }
-
+            App.switchGame(new Leaderboard(dc, playerControllers, scores));
             dc.redraw();
             DConsole.pause(20);
 
             //end
-            App.switchGame(new Leaderboard(dc, playerControllers, scores));
         }
     }
 }

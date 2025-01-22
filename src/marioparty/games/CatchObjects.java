@@ -244,6 +244,7 @@ public class CatchObjects extends Game {
       DConsole.pause(20);
 
     }
+    dc.setOrigin(DConsole.ORIGIN_CENTER);
     App.switchGame(new Leaderboard(dc, playerControllers, scores));
   }
 
