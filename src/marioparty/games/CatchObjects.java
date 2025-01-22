@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import DLibX.DConsole;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
 public class CatchObjects extends Game {
@@ -31,6 +33,12 @@ public class CatchObjects extends Game {
     int boxxe = 700;
     int boxxf = 900;
     int collect1 = 0, collect2 = 0, collect3 = 0, collect4 = 0;
+    int[] place = new int[4];
+    boolean printed0 = false;
+    boolean printed1 = false;
+    boolean printed2 = false;
+    boolean printed3 = false;
+    int rank = 0;
 
     Color colq = new Color(230, 190, 255, 255);
     Color wall = new Color(250, 160, 60, 255);
@@ -124,24 +132,28 @@ public class CatchObjects extends Game {
         }
 
         // winners
-        if (collect1 > 20) {
-          dc.setPaint(Color.RED);
-          dc.fillRect(0, 1000, 10000, 10000);
+        if (collect1 > 20 && printed0 == false) {
+          place[0] = 4 - rank;
+          rank++;
+          printed0 = true;
         }
 
-        if (collect2 > 20) {
-          dc.setPaint(Color.BLUE);
-          dc.fillRect(0, 1000, 10000, 10000);
+        if (collect2 > 20 && printed1 == false) {
+          place[1] = 4 - rank;
+          rank++;
+          printed1 = true;
         }
 
-        if (collect3 > 20) {
-          dc.setPaint(Color.GREEN);
-          dc.fillRect(0, 1000, 10000, 10000);
+        if (collect3 > 20 && printed2 == false) {
+          place[2] = 4 - rank;
+          rank++;
+          printed2 = true;
         }
 
-        if (collect4 > 20) {
-          dc.setPaint(Color.YELLOW);
-          dc.fillRect(0, 1000, 10000, 10000);
+        if (collect4 > 20 && printed3 == false) {
+          place[3] = 4 - rank;
+          rank++;
+          printed3 = true;
         }
       }
 
@@ -154,10 +166,20 @@ public class CatchObjects extends Game {
       dc.drawString("Box 3: " + collect3, 1040, 260);
       dc.drawString("Box 4: " + collect4, 1040, 290);
 
+      if (rank == 4) {
+        scores[0] += place[0];
+        scores[1] += place[1];
+        scores[2] += place[2];
+        scores[3] += place[3];
+        break;
+
+      }
+
       dc.redraw();
       DConsole.pause(20);
 
     }
+    App.switchGame(new Leaderboard(dc, playerControllers, scores));
   }
 
 }
