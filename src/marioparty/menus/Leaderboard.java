@@ -13,12 +13,14 @@ import marioparty.utils.AbstractGamepad;
 
 public class Leaderboard extends Game {
 
+    private int[] workingScores = Arrays.copyOf(scores, 4);
+
     public Leaderboard(DConsole dc, AbstractGamepad[] gamepads, int[] scores) {
         super(dc, gamepads, scores);
     }
 
     public void play() {
-        int[] workingScores = Arrays.copyOf(scores, 4);
+
         Color[] colors = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW };
         Font arialMedium = new Font("arial", Font.BOLD, 40);
 
@@ -59,6 +61,17 @@ public class Leaderboard extends Game {
 
         this.dc.redraw();
         DConsole.pause(3000);
+        if(this.checkWinner()) return;
         App.switchGame(new GameSelect(dc, playerControllers, workingScores));
+    }
+
+    private boolean checkWinner() {
+        for (int score : workingScores) {
+            if (score >= 20) {
+                App.switchGame(new Winner(dc, playerControllers, workingScores));
+                return true;
+            }
+        }
+        return false;
     }
 }

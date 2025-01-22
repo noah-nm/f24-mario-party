@@ -192,8 +192,8 @@ public class RunningGame extends Game {
             // handle when the game is done
             if (gameDone) {
                 // hand out scores 4-1
-                for (int i = winnerOrder.size() - 1; i >= 0; i--) {
-                    scores[winnerOrder.get(i)] += i + 1;
+                for (int i = 0; i < 4; i++) {
+                    scores[winnerOrder.get(i)] += 4 - i;
                 }
                 // switch
                 App.switchGame(new Leaderboard(dc, playerControllers, scores));

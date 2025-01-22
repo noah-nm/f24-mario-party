@@ -34,10 +34,6 @@ public class App {
     public void run() {
         initGameControllers();
 
-        if (gamepads.size() == 0) {
-            gamepads.add(new DebugGamepad());
-        }
-
         // initialization
         dc.setResizable(false);
         dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
@@ -60,8 +56,7 @@ public class App {
 
         currentGame = new GameSelect(dc, players, scores);
 
-        // used to test player selection screen, can be removed once another screen is
-        // added here
+        // main game loop
         while (running) {
             dc.clear();
             currentGame.play();
@@ -78,7 +73,6 @@ public class App {
         for (Controller controller : controllers) {
 
             if (controller.getType() == Controller.Type.GAMEPAD) {
-                System.out.println(controller.getName() + " found");
                 // add gamepad to list
                 gamepads.add(new Gamepad(controller));
             }

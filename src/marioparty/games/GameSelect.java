@@ -57,25 +57,22 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
-
+   
+        this.addEntry(new BiggestNumber(dc, playerControllers, scores), "Big Number");
         this.addEntry(new Mashing(dc, playerControllers, scores), "Button Mashing Game");
-        this.addEntry(new MashingGame(dc, playerControllers, scores), "Mash");
-
-        // VETO: No mouse controlled games
-        // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
-        // game");
-        // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
-        // game");
-
         this.addEntry(new HotPotato(dc, playerControllers, scores), "Hot potato");
         this.addEntry(new GrabCoin(dc, playerControllers, scores), "Get The Coin");
         this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
+        this.addEntry(new MashingGame(dc, playerControllers, scores), "Mashing Game");
+        this.addEntry(new DodgeFromBullets(dc, playerControllers, scores), "Dodge bullets");
+        this.addEntry(new ColorReactionGame(dc, playerControllers, scores),"Color Reaction Game");
         this.addEntry(new SpinningGame(dc, playerControllers, scores), "Spinning game");
         this.addEntry(new GuessingGame(dc, playerControllers, scores), "Guessing Game");
         this.addEntry(new Trivia(dc, playerControllers, scores), "Trivia Game");
         this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
         this.addEntry(new SIMON(dc, playerControllers, scores), "Simon");
-        
+        this.addEntry(new CatchObjects(dc, playerControllers, scores), "Falling Objects");
+        this.addEntry(new EscapeGame(dc, playerControllers, scores), "Escape Game");
 
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
@@ -92,7 +89,6 @@ public class GameSelect extends Game {
 
         if (p1Gamepad.getAButton()) {
             App.switchGame(this.entries.get(selected).game);
-            System.out.println("game switched");
         }
 
         // handle controller inputs
