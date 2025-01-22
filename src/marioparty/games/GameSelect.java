@@ -60,12 +60,6 @@ public class GameSelect extends Game {
    
         this.addEntry(new BiggestNumber(dc, playerControllers, scores), "Big Number");
         this.addEntry(new Mashing(dc, playerControllers, scores), "Button Mashing Game");
-        this.addEntry(new MashingGame(dc, playerControllers, scores), "Mash");
-
-        // VETO: No mouse controlled games
-        // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
-        // game");
-
         this.addEntry(new HotPotato(dc, playerControllers, scores), "Hot potato");
         this.addEntry(new GrabCoin(dc, playerControllers, scores), "Get The Coin");
         this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
