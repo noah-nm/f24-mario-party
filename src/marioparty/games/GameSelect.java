@@ -57,16 +57,34 @@ public class GameSelect extends Game {
         }
 
         // Add game entries below
+
+        this.addEntry(new Mashing(dc, playerControllers, scores), "Button Mashing Game");
+        this.addEntry(new MashingGame(dc, playerControllers, scores), "Mash");
+
+        // VETO: No mouse controlled games
+        // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
+        // game");
+        // this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction
+        // game");
+
+        this.addEntry(new HotPotato(dc, playerControllers, scores), "Hot potato");
+        this.addEntry(new GrabCoin(dc, playerControllers, scores), "Get The Coin");
         this.addEntry(new RPSGame(dc, playerControllers, scores), "Rock Paper Scissors");
         this.addEntry(new mashingGame(dc, playerControllers, scores), "Mashing Game");
         this.addEntry(new ReactionGame(dc, playerControllers, scores), "Reaction game");
         this.addEntry(new DodgeFromBullets(dc, playerControllers, scores), "Dodge bullets");
-        this.addEntry(this, "Game select");
-        this.addEntry(this, "Game select");
+
+        this.addEntry(new SpinningGame(dc, playerControllers, scores), "Spinning game");
+        this.addEntry(new GuessingGame(dc, playerControllers, scores), "Guessing Game");
+        this.addEntry(new Trivia(dc, playerControllers, scores), "Trivia Game");
+        this.addEntry(new RunningGame(dc, playerControllers, scores), "Running Game");
+        this.addEntry(new EscapeGame(dc, playerControllers, scores), "Escape Game");
+
 
         // drawing entries
         // DO NOT ADD ENTRIES BELOW THIS
         this.drawEntries();
+        DConsole.pause(15);
     }
 
     public void addEntry(Game game, String name) {

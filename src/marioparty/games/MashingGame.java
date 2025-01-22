@@ -5,11 +5,12 @@ import java.awt.Font;
 
 import DLibX.DConsole;
 import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
-public class mashingGame extends Game {
+public class MashingGame extends Game {
 
-    public mashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+    public MashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
         super(dc, playerControllers, scores);
     }
 
@@ -28,15 +29,14 @@ public class mashingGame extends Game {
         boolean key3WasPressed = false;
         boolean key4WasPressed = false;
         boolean gameOver = false;
+        int winner = 0;
 
         while (gameOver == false) {
 
             for (AbstractGamepad playerController : playerControllers) {
                 playerController.poll();
             }
-            if (playerControllers[0].getAButton()) {
-                dc.drawEllipse(0, 0, 0, 0);
-            }
+
             dc.clear();
 
             // text
@@ -112,22 +112,29 @@ public class mashingGame extends Game {
             if (x1 >= 880) {
                 showWinner(dc, "P1", Color.RED);
                 gameOver = true;
+                winner = 1;
             } else if (x2 >= 880) {
                 showWinner(dc, "P2", Color.BLUE);
                 gameOver = true;
+                winner = 2;
             } else if (x3 >= 880) {
                 showWinner(dc, "P3", Color.GREEN);
                 gameOver = true;
+                winner = 3;
             } else if (x4 >= 880) {
                 showWinner(dc, "P4", Color.YELLOW);
                 gameOver = true;
+                winner = 4;
             }
-
             dc.redraw();
             dc.pause(10);
         }
-        dc.pause(3000);
-        App.switchGame(new GameSelect(dc, playerControllers, scores));
+
+         // give score
+        scores[winner -1] += 4;
+        dc.redraw();
+        dc.pause(5000);
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 
     private void showWinner(DConsole dc, String player, Color color) {

@@ -25,10 +25,10 @@ public class PlayerSelect extends Menu {
         while (!exitMenu) {
 
             drawGui();
-            
+
             for (AbstractGamepad gamepad : this.gamepads) {
                 gamepad.poll();
-               
+
                 // allow players to select a color (player number)
                 if (gamepad.getBButton() && playerControllers[0] == null && playerControllers[0] != gamepad) {
                     playerControllers[0] = gamepad;
@@ -39,7 +39,7 @@ public class PlayerSelect extends Menu {
                 } else if (gamepad.getYButton() && playerControllers[3] == null && playerControllers[3] != gamepad) {
                     playerControllers[3] = gamepad;
                 }
-                
+
             }
 
             // allow a player to cancel their choice
@@ -56,19 +56,17 @@ public class PlayerSelect extends Menu {
                     }
                 }
             }
-            
+
             // break loop to next screen
-            if (
-                playerControllers[0] != null &&
-                playerControllers[1] != null &&
-                playerControllers[2] != null &&
-                playerControllers[3] != null &&
-                playerControllers[0].getStartButton()
-            ) {
+            if (playerControllers[0] != null &&
+                    playerControllers[1] != null &&
+                    playerControllers[2] != null &&
+                    playerControllers[3] != null &&
+                    playerControllers[0].getStartButton()) {
                 exitMenu = true;
                 System.out.println(playerControllers);
             }
-        }    
+        }
     }
 
     /**
@@ -88,7 +86,7 @@ public class PlayerSelect extends Menu {
 
         // fonts
         Font arialTitle = new Font("arial", 1, 80);
-        Font arialSmall = new Font("arial", 1,30);
+        Font arialSmall = new Font("arial", 1, 30);
         Font arialMedium = new Font("arial", 1, 40);
         Font arialVerySmall = new Font("arial", 1, 20);
 
@@ -100,7 +98,7 @@ public class PlayerSelect extends Menu {
         this.dc.fillRect(0, 0, this.dc.getWidth(), this.dc.getHeight());
 
         // title text
-        
+
         this.dc.setPaint(Color.RED);
         this.dc.setOrigin(DConsole.ORIGIN_CENTER);
         this.dc.setFont(arialTitle);
@@ -108,7 +106,7 @@ public class PlayerSelect extends Menu {
 
         // instructions
         this.dc.setFont(arialSmall);
-        this.dc.drawString("Press START when ready", this.dc.getWidth() /  2, this.dc.getHeight() / 2 - 100);
+        this.dc.drawString("Press START when ready", this.dc.getWidth() / 2, this.dc.getHeight() / 2 - 100);
         this.dc.setPaint(Color.BLACK);
         this.dc.drawString("Press BACK to unselect", this.dc.getWidth() / 2, this.dc.getHeight() / 2 + 350);
 
@@ -130,7 +128,7 @@ public class PlayerSelect extends Menu {
         this.dc.drawString("Green", 725, 495);
         this.dc.drawString("Yellow", 975, 495);
 
-        // Player number text 
+        // Player number text
         this.dc.setFont(arialMedium);
         this.dc.setPaint(Color.RED);
         this.dc.drawString("Player 1", 225, 600);
@@ -140,7 +138,7 @@ public class PlayerSelect extends Menu {
         this.dc.drawString("Player 3", 725, 600);
         this.dc.setPaint(Color.YELLOW);
         this.dc.drawString("Player 4", 975, 600);
-        
+
         // draw buttons
         this.dc.setPaint(new Color(245, 14, 10, 220)); // light red B button
         this.dc.fillEllipse(225, 700, 50, 50);
@@ -182,13 +180,13 @@ public class PlayerSelect extends Menu {
         // player 2 indicator
         this.dc.fillEllipse(475, 420, 25, 25);
 
-        // change color is player 3 is taken 
+        // change color is player 3 is taken
         if (playerControllers[2] == null) {
             this.dc.setPaint(notTaken);
         } else {
             this.dc.setPaint(taken);
         }
-        
+
         // player 3 indicator
         this.dc.fillEllipse(725, 420, 25, 25);
 
