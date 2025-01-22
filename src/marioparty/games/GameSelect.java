@@ -96,7 +96,6 @@ public class GameSelect extends Game {
 
         if (p1Gamepad.getAButton()) {
             App.switchGame(this.entries.get(selected).game);
-            System.out.println("game switched");
         }
 
         // handle controller inputs

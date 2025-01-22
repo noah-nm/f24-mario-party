@@ -73,7 +73,6 @@ public class App {
         for (Controller controller : controllers) {
 
             if (controller.getType() == Controller.Type.GAMEPAD) {
-                System.out.println(controller.getName() + " found");
                 // add gamepad to list
                 gamepads.add(new Gamepad(controller));
             }

@@ -51,7 +51,6 @@ public class ReactionGame extends Game {
             double fastestSeconds = fastest / 1_000_000_000.0;
             fastestSeconds = Math.round(fastestSeconds * 100.0) / 100.0;
             times[rounds] = fastestSeconds;
-            System.out.println("Reaction: " + fastestSeconds + " time");
         }
         this.dc.clear();
         this.dc.redraw();

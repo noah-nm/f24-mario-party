@@ -266,7 +266,6 @@ public class Trivia extends Game {
                 }
 
                 this.dc.redraw();
-
             }
 
             if (playerAnswers[0] == correctAnswer) {

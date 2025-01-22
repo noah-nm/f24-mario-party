@@ -64,7 +64,6 @@ public class PlayerSelect extends Menu {
                     playerControllers[3] != null &&
                     playerControllers[0].getStartButton()) {
                 exitMenu = true;
-                System.out.println(playerControllers);
             }
         }
     }
@@ -75,9 +74,6 @@ public class PlayerSelect extends Menu {
      * @return list of final player assignments (Gamepad[])
      */
     public AbstractGamepad[] getPlayers() {
-        for (int i = 0; i < this.playerControllers.length; i++) {
-            System.out.println(this.playerControllers[i]);
-        }
         return this.playerControllers;
     }
 
