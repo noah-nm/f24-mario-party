@@ -20,5 +20,5 @@ public abstract class Menu {
      * 
      */
     public abstract void play();
-    
+
 }

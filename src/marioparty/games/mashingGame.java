@@ -7,9 +7,9 @@ import DLibX.DConsole;
 import marioparty.App;
 import marioparty.utils.AbstractGamepad;
 
-public class mashingGame extends Game {
+public class MashingGame extends Game {
 
-    public mashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+    public MashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
         super(dc, playerControllers, scores);
     }
 
@@ -37,32 +37,32 @@ public class mashingGame extends Game {
             if (playerControllers[0].getAButton()) {
                 dc.drawEllipse(0, 0, 0, 0);
             }
-            dc.clear();
+            this.dc.clear();
 
             // text
-            dc.setPaint(Color.BLACK);
-            dc.setFont(new Font("Serif", Font.BOLD, 100)); // Set font
-            dc.drawString("MASH!", 500, 50);
-            dc.setFont(new Font("Serif", Font.BOLD, 25)); // Set font
-            dc.drawString("P1", 100, 200);
-            dc.drawString("P2", 100, 350);
-            dc.drawString("P3", 100, 500);
-            dc.drawString("P4", 100, 650);
+            this.dc.setPaint(Color.BLACK);
+            this.dc.setFont(new Font("Serif", Font.BOLD, 100)); // Set font
+            this.dc.drawString("MASH!", 500, 50);
+            this.dc.setFont(new Font("Serif", Font.BOLD, 25)); // Set font
+            this.dc.drawString("P1", 100, 200);
+            this.dc.drawString("P2", 100, 350);
+            this.dc.drawString("P3", 100, 500);
+            this.dc.drawString("P4", 100, 650);
 
             // Drawings
             // initalizing players
-            dc.setPaint(Color.RED);
-            dc.fillRect(w1, 200, x1, 50);
-            dc.setPaint(Color.BLUE);
-            dc.fillRect(w2, 350, x2, 50);
-            dc.setPaint(Color.GREEN);
-            dc.fillRect(w3, 500, x3, 50);
-            dc.setPaint(Color.YELLOW);
-            dc.fillRect(w4, 650, x4, 50);
+            this.dc.setPaint(Color.RED);
+            this.dc.fillRect(w1, 200, x1, 50);
+            this.dc.setPaint(Color.BLUE);
+            this.dc.fillRect(w2, 350, x2, 50);
+            this.dc.setPaint(Color.GREEN);
+            this.dc.fillRect(w3, 500, x3, 50);
+            this.dc.setPaint(Color.YELLOW);
+            this.dc.fillRect(w4, 650, x4, 50);
 
             // finish line
-            dc.setPaint(Color.BLACK);
-            dc.fillRect(1000, 0, 25, 2000);
+            this.dc.setPaint(Color.BLACK);
+            this.dc.fillRect(1000, 0, 25, 2000);
 
             // gameplay
             // Player 1
@@ -123,10 +123,10 @@ public class mashingGame extends Game {
                 gameOver = true;
             }
 
-            dc.redraw();
-            dc.pause(10);
+            this.dc.redraw();
+            DConsole.pause(10);
         }
-        dc.pause(3000);
+        DConsole.pause(3000);
         App.switchGame(new GameSelect(dc, playerControllers, scores));
     }
 

@@ -1,9 +1,7 @@
 package marioparty.games;
 
-
 import java.awt.Color;
 import java.awt.Font;
-
 
 import DLibX.DConsole;
 import java.util.Random;
@@ -12,15 +10,12 @@ import marioparty.App;
 import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
-
 public class EscapeGame extends Game {
     public EscapeGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
         super(dc, playerControllers, scores);
     }
 
-
     public void play() {
-
 
         int p1x = 200;
         int p1y = 200;
@@ -36,32 +31,26 @@ public class EscapeGame extends Game {
         boolean p3Finished = false;
         boolean p4Finished = false;
 
-
         // initialize door spawn
         Random random = new Random();
         int doorX = random.nextInt(1200); // random x coordinate
         int doorY = random.nextInt(600) + 200; // random y coordinate
 
-
         // custom brown colour
         Color customColor = new Color(112, 69, 46);
 
-
         int[] winners = new int[4];
-
 
         while (place < 4) {
             for (AbstractGamepad playerController : playerControllers) {
                 playerController.poll();
             }
 
-
             dc.clear();
             // text
             dc.setPaint(Color.BLACK);
             dc.setFont(new Font("Serif", Font.BOLD, 100)); // Set font
             dc.drawString("ESCAPE!", 600, 50);
-
 
             // players 1
             if (!p1Finished) {
@@ -86,7 +75,6 @@ public class EscapeGame extends Game {
                 }
             }
 
-
             // player 2
             if (!p2Finished) {
                 dc.setPaint(Color.BLUE);
@@ -109,7 +97,6 @@ public class EscapeGame extends Game {
                     p2Finished = true;
                 }
             }
-
 
             // player 3
             if (!p3Finished) {
@@ -134,7 +121,6 @@ public class EscapeGame extends Game {
                 }
             }
 
-
             // player 4
             if (!p4Finished) {
                 dc.setPaint(Color.YELLOW);
@@ -158,25 +144,21 @@ public class EscapeGame extends Game {
                 }
             }
 
-
             // door
             dc.setPaint(customColor);
             dc.fillRect(doorX, doorY, 40, 80);
             dc.setPaint(Color.GRAY);
             dc.fillEllipse(doorX + 6, doorY, 10, 10);
 
-
             dc.redraw();
-            dc.pause(10);
+            DConsole.pause(10);
         }
-
 
         // display winners
         dc.clear();
         dc.setPaint(Color.BLACK);
         dc.setFont(new Font("Serif", Font.BOLD, 80));
         dc.drawString("Game Over! Winners:", 600, 200);
-
 
         if (winners.length > 0) {
             dc.drawString("1st Place: Player " + winners[0], 600, 300);
@@ -192,13 +174,13 @@ public class EscapeGame extends Game {
         }
 
         // give scores
-        scores[winners[0]-1] += 4;
-        scores[winners[1]-1] += 3;
-        scores[winners[2]-1] += 2;
-        scores[winners[3]-1] += 1;
+        scores[winners[0] - 1] += 4;
+        scores[winners[1] - 1] += 3;
+        scores[winners[2] - 1] += 2;
+        scores[winners[3] - 1] += 1;
 
         dc.redraw();
-        dc.pause(5000);
+        DConsole.pause(5000);
         App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 }
