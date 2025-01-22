@@ -10,7 +10,6 @@ import marioparty.App;
 import marioparty.games.Game;
 import marioparty.games.GameSelect;
 import marioparty.utils.AbstractGamepad;
-import marioparty.menus.Winner;
 
 public class Leaderboard extends Game {
 
@@ -62,16 +61,17 @@ public class Leaderboard extends Game {
 
         this.dc.redraw();
         DConsole.pause(3000);
-        this.checkWinner();
+        if(this.checkWinner()) return;
         App.switchGame(new GameSelect(dc, playerControllers, workingScores));
     }
 
-    private void checkWinner() {
+    private boolean checkWinner() {
         for (int score : workingScores) {
             if (score >= 20) {
                 App.switchGame(new Winner(dc, playerControllers, workingScores));
-                return;
+                return true;
             }
         }
+        return false;
     }
 }

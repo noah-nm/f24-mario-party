@@ -8,7 +8,6 @@ import marioparty.games.GameSelect;
 import marioparty.menus.Leaderboard;
 import marioparty.menus.MainMenu;
 import marioparty.menus.PlayerSelect;
-import marioparty.menus.Winner;
 import marioparty.utils.AbstractGamepad;
 import marioparty.utils.DebugGamepad;
 import marioparty.utils.Gamepad;
@@ -52,7 +51,7 @@ public class App {
         AbstractGamepad[] players = playerSelect.getPlayers();
 
         // test 
-        scores[2] = 20;
+        scores[2] = 19;
 
         // leaderboard
         Leaderboard leaderboard = new Leaderboard(dc, players, scores);
