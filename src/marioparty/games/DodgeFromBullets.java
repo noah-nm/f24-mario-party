@@ -1,5 +1,7 @@
 package marioparty.games;
 import marioparty.utils.Gamepad;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 import DLibX.*;
 import java.awt.Color;
@@ -125,11 +127,22 @@ public class DodgeFromBullets extends Game {
                 // Check for collision with any player
                 for (Player player : players) {
                     if (player.collidesWith(bullet)) {
+
+                        for(int j = 0; j < 4; j++){
+                            if (players[j].collidesWith(bullet)){
+                                scores[j]--;
+                            }
+                        }
+
                         dc.clear();  // Clear the screen before displaying game over
                         dc.drawString("Game Over!", dc.getWidth() / 2 - 50, dc.getHeight() / 2);
                         
                         dc.drawString("Score: " + score, dc.getWidth() / 2 - 50, dc.getHeight() / 2 + 30);
                         dc.pause(2000);  // Pause for 2 seconds to display the game over screen
+                        dc.redraw();
+                        dc.pause(3000);
+
+                        App.switchGame(new Leaderboard(dc, playerControllers, scores));
                         return; // End the game
                     }
                 }
@@ -247,6 +260,8 @@ public class DodgeFromBullets extends Game {
 
         public void draw() { 
             dc.fillRect(x, y, width, height);
+
+
         }
     }
 }
