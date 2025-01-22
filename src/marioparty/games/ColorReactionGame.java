@@ -76,7 +76,7 @@ public class ColorReactionGame extends Game {
                 double currentTime = System.currentTimeMillis();
                 double elapsedTime = (currentTime - gameStartTime) / 1000;
 
-                if (elapsedTime <= 30) {
+                if (elapsedTime <= 3) {
                     // Countdown Timer at the top-right corner
                     int remainingTime = 30 - (int) elapsedTime;
 
@@ -159,7 +159,7 @@ public class ColorReactionGame extends Game {
                 }
                 // Elapsed time in seconds
 
-                if (elapsedTime >= 30) {
+                if (elapsedTime >= 3) {
                     // End the game after 30 seconds
                     dc.setPaint(Color.WHITE);
                     dc.setFont(new Font("Serif", Font.BOLD, 48));
@@ -177,9 +177,12 @@ public class ColorReactionGame extends Game {
                     scores[2] += score[2];
                     scores[3] += score[3];
                     dc.pause(3000);
+                    
                     App.switchGame(new Leaderboard(dc, playerControllers, scores));
+                    
+                    break;
                 }
-
+                
             }
         }
     }
