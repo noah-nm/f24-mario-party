@@ -1,6 +1,8 @@
 package marioparty.games;
 
 import DLibX.*;
+import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 import java.awt.*;
 
@@ -46,6 +48,7 @@ public class RPSGame extends Game {
         scores[winner2 - 1] += 2;
         scores[finalWinner - 1] += 2;
         dc.pause(5000);
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
      }
     
 
