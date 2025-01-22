@@ -31,7 +31,7 @@ public class RunningGame extends Game {
         }
 
         if (screen == 0) { // ready screen
-            
+
             // handle button presses
             for (int i = 0; i < playerControllers.length; i++) {
                 if (this.playerControllers[i].getAButton()) {
@@ -177,7 +177,7 @@ public class RunningGame extends Game {
             this.dc.fillEllipse(playerPos[3], 650, 50, 50);
 
             boolean gameDone = winnerOrder.size() == 4;
-            
+
             // calc winner
             for (int i = 0; i < playerControllers.length; i++) {
                 tripImmunity[i] -= 1;
@@ -188,12 +188,12 @@ public class RunningGame extends Game {
                     }
                 }
             }
-            
+
             // handle when the game is done
-            if(gameDone) {
+            if (gameDone) {
                 // hand out scores 4-1
-                for (int i = winnerOrder.size() - 1; i >= 0; i--) {
-                    scores[winnerOrder.get(i)] += i + 1;
+                for (int i = 0; i < 4; i++) {
+                    scores[winnerOrder.get(i)] += 4 - i;
                 }
                 // switch
                 App.switchGame(new Leaderboard(dc, playerControllers, scores));
