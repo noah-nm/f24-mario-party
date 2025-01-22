@@ -16,7 +16,7 @@ public class SIMON extends Game {
 
   @Override
   public void play() {
-    showTitleScreen();
+    showTitleScreen();  //cleaned up the code so it looks nicer
     runSingleRound();
     showEndScreen();
   }
@@ -38,10 +38,10 @@ public class SIMON extends Game {
     Color[] playerColors = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW };
     String[] playerNames = { "Player 1", "Player 2", "Player 3", "Player 4" };
 
-    // Generate a target colour for players to match
+    // Generate a target colour for players to match (not really used, changed the game mid way due to complications)
     int targetPlayer = random.nextInt(4);
     Color targetColor = playerColors[targetPlayer];
-    boolean roundActive = true;
+    boolean roundActive = true; 
 
     while (roundActive) {
       dc.clear();
@@ -69,11 +69,11 @@ public class SIMON extends Game {
       dc.setPaint(Color.BLACK);
       dc.drawString(playerNames[3], 850, 520);
 
-      // Draw target color
+      // Draw target color (just used for visuals at this point, no significant use)
       dc.setPaint(targetColor);
-      dc.fillRect(500, 300, 100, 100);
+      dc.fillRect(550, 750, 10000, 100);
       dc.setPaint(Color.BLACK);
-      dc.drawString("PRESS THIS QUICK!", 550, 700);
+      dc.drawString("PRESS A QUICK!", 600, 750);
 
       dc.redraw();
 
@@ -82,8 +82,12 @@ public class SIMON extends Game {
         playerControllers[i].poll();
         if (playerControllers[i].getAButton()) {
           if (i == targetPlayer) {
+            // Award 4 points to the winner
+            scores[i] += 4;
             displayWinnerScreen(i, playerColors, playerNames); // Display winner screen
           } else {
+            //  4 points to the target player if the wrong player presses the button
+            scores[targetPlayer] += 4;
             displayWinnerScreen(targetPlayer, playerColors, playerNames); // Default to target player
           }
           roundActive = false; // End the round
@@ -104,7 +108,7 @@ public class SIMON extends Game {
     dc.setFont(winnerFont);
     dc.drawString(playerNames[winner] + " Wins!", 600, 400);
     dc.redraw();
-    DConsole.pause(5000); // Display the winner screen for 5 seconds
+    DConsole.pause(3000); // Display the winner screen for 5 seconds
   }
 
   private void showEndScreen() {
@@ -119,5 +123,4 @@ public class SIMON extends Game {
     DConsole.pause(3000); // Show the end screen for 3 seconds
     App.switchGame(new Leaderboard(dc, playerControllers, scores));
   }
-
 }
