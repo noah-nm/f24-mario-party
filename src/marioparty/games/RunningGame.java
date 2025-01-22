@@ -13,7 +13,7 @@ public class RunningGame extends Game {
 
     private boolean[] prevInput = new boolean[] { false, false, false, false };
     private boolean[] readyPlayers = new boolean[] { false, false, false, false };
-    private int[] playerPos = new int[] { 100, 150, 200, 250 };
+    private int[] playerPos = new int[] { 100, 100, 100, 100 };
     private long[] tripTime = new long[4];
     private int[] tripImmunity = new int[4];
     private ArrayList<Integer> winnerOrder = new ArrayList<>();
