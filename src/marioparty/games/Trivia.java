@@ -267,12 +267,6 @@ public class Trivia extends Game {
 
                 this.dc.redraw();
 
-                System.out.println("Start: " + this.playerControllers[0].getStartButton());
-                System.out.println("Back: " + this.playerControllers[0].getBackButton());
-                System.out.println("A: " + this.playerControllers[0].getAButton());
-                System.out.println("B: " + this.playerControllers[0].getBButton());
-                System.out.println("X: " + this.playerControllers[0].getXButton());
-                System.out.println("Y: " + this.playerControllers[0].getYButton());
             }
 
             if (playerAnswers[0] == correctAnswer) {
