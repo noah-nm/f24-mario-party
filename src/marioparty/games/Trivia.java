@@ -312,68 +312,32 @@ public class Trivia extends Game {
         int third = -1;
         int fourth = -1;
 
-        for (int i = 5; i == 0; i--) {
-            if (scores[0] == i) {
-                if (first == -1 || first == i) {
-                    scores[0] += 4;
-                    first = i;
-                } else if (second == -1 || second == i) {
-                    scores[0] += 3;
-                    second = i;
-                } else if (third == -1 || third == i) {
-                    scores[0] += 2;
-                    third = i;
-                } else if (fourth == -1 || fourth == i) {
-                    scores[0] += 1;
-                    fourth = i;
-                }
-            }
-            if (scores[1] == i) {
-                if (first == -1 || first == i) {
-                    scores[1] += 4;
-                    first = i;
-                } else if (second == -1 || second == i) {
-                    scores[1] += 3;
-                    second = i;
-                } else if (third == -1 || third == i) {
-                    scores[1] += 2;
-                    third = i;
-                } else if (fourth == -1 || fourth == i) {
-                    scores[1] += 1;
-                    fourth = i;
-                }
-            }
-            if (scores[2] == i) {
-                if (first == -1 || first == i) {
-                    scores[2] += 4;
-                    first = i;
-                } else if (second == -1 || second == i) {
-                    scores[2] += 3;
-                    second = i;
-                } else if (third == -1 || third == i) {
-                    scores[2] += 2;
-                    third = i;
-                } else if (fourth == -1 || fourth == i) {
-                    scores[2] += 1;
-                    fourth = i;
-                }
-            }
-            if (scores[3] == i) {
-                if (first == -1 || first == i) {
-                    scores[3] += 4;
-                    first = i;
-                } else if (second == -1 || second == i) {
-                    scores[3] += 3;
-                    second = i;
-                } else if (third == -1 || third == i) {
-                    scores[3] += 2;
-                    third = i;
-                } else if (fourth == -1 || fourth == i) {
-                    scores[3] += 1;
-                    fourth = i;
+        for(int i = 5; i == 0; i--){
+            for(int j = 0; j < 4; j++){
+                if(correctAnswers[j] == i && first == -1){
+                    first = j;
+                }else if(correctAnswers[j] == i && second == -1){
+                    second = j;
+                }else if(correctAnswers[j] == i && third == -1){
+                    third = j;
+                }else if(correctAnswers[j] == i && fourth == -1){
+                    fourth = j;
                 }
             }
         }
+
+        for(int i = 0; i < 4; i++){
+            if(first == i){
+                scores[i]+= 4;
+            }else if(second == i){
+                scores[i]+= 3;
+            }else if(third == i){
+                scores[i]+= 2;
+            }else if(fourth == i){
+                scores[i]+= 1;
+            }
+        }
+
         App.switchGame(new Leaderboard(dc, playerControllers, scores));
 
     }
