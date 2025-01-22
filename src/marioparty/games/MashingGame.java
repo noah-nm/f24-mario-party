@@ -8,9 +8,9 @@ import marioparty.App;
 import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
-public class mashingGame extends Game {
+public class MashingGame extends Game {
 
-    public mashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
+    public MashingGame(DConsole dc, AbstractGamepad[] playerControllers, int[] scores) {
         super(dc, playerControllers, scores);
     }
 
@@ -36,6 +36,7 @@ public class mashingGame extends Game {
             for (AbstractGamepad playerController : playerControllers) {
                 playerController.poll();
             }
+
             dc.clear();
 
             // text
