@@ -172,10 +172,10 @@ public class ColorReactionGame extends Game {
                     dc.drawString("Player 4: " + score[3], 300, 390);
                     dc.redraw();
 
-                    scores[0] += score[0];
-                    scores[1] += score[1];
-                    scores[2] += score[2];
-                    scores[3] += score[3];
+                    scores[0] += score[0]/2;
+                    scores[1] += score[1]/2;
+                    scores[2] += score[2]/2;
+                    scores[3] += score[3]/2;
                     dc.pause(3000);
                     
                     App.switchGame(new Leaderboard(dc, playerControllers, scores));
