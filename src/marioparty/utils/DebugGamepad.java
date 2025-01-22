@@ -18,5 +18,5 @@ public class DebugGamepad extends AbstractGamepad {
     public void poll() {
         return;
     }
-    
+
 }
