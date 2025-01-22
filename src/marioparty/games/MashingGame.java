@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import DLibX.DConsole;
 import marioparty.App;
+import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
 
 public class MashingGame extends Game {
@@ -28,41 +29,40 @@ public class MashingGame extends Game {
         boolean key3WasPressed = false;
         boolean key4WasPressed = false;
         boolean gameOver = false;
+        int winner = 0;
 
         while (gameOver == false) {
 
             for (AbstractGamepad playerController : playerControllers) {
                 playerController.poll();
             }
-            if (playerControllers[0].getAButton()) {
-                dc.drawEllipse(0, 0, 0, 0);
-            }
-            this.dc.clear();
+
+            dc.clear();
 
             // text
-            this.dc.setPaint(Color.BLACK);
-            this.dc.setFont(new Font("Serif", Font.BOLD, 100)); // Set font
-            this.dc.drawString("MASH!", 500, 50);
-            this.dc.setFont(new Font("Serif", Font.BOLD, 25)); // Set font
-            this.dc.drawString("P1", 100, 200);
-            this.dc.drawString("P2", 100, 350);
-            this.dc.drawString("P3", 100, 500);
-            this.dc.drawString("P4", 100, 650);
+            dc.setPaint(Color.BLACK);
+            dc.setFont(new Font("Serif", Font.BOLD, 100)); // Set font
+            dc.drawString("MASH!", 500, 50);
+            dc.setFont(new Font("Serif", Font.BOLD, 25)); // Set font
+            dc.drawString("P1", 100, 200);
+            dc.drawString("P2", 100, 350);
+            dc.drawString("P3", 100, 500);
+            dc.drawString("P4", 100, 650);
 
             // Drawings
             // initalizing players
-            this.dc.setPaint(Color.RED);
-            this.dc.fillRect(w1, 200, x1, 50);
-            this.dc.setPaint(Color.BLUE);
-            this.dc.fillRect(w2, 350, x2, 50);
-            this.dc.setPaint(Color.GREEN);
-            this.dc.fillRect(w3, 500, x3, 50);
-            this.dc.setPaint(Color.YELLOW);
-            this.dc.fillRect(w4, 650, x4, 50);
+            dc.setPaint(Color.RED);
+            dc.fillRect(w1, 200, x1, 50);
+            dc.setPaint(Color.BLUE);
+            dc.fillRect(w2, 350, x2, 50);
+            dc.setPaint(Color.GREEN);
+            dc.fillRect(w3, 500, x3, 50);
+            dc.setPaint(Color.YELLOW);
+            dc.fillRect(w4, 650, x4, 50);
 
             // finish line
-            this.dc.setPaint(Color.BLACK);
-            this.dc.fillRect(1000, 0, 25, 2000);
+            dc.setPaint(Color.BLACK);
+            dc.fillRect(1000, 0, 25, 2000);
 
             // gameplay
             // Player 1
@@ -112,22 +112,29 @@ public class MashingGame extends Game {
             if (x1 >= 880) {
                 showWinner(dc, "P1", Color.RED);
                 gameOver = true;
+                winner = 1;
             } else if (x2 >= 880) {
                 showWinner(dc, "P2", Color.BLUE);
                 gameOver = true;
+                winner = 2;
             } else if (x3 >= 880) {
                 showWinner(dc, "P3", Color.GREEN);
                 gameOver = true;
+                winner = 3;
             } else if (x4 >= 880) {
                 showWinner(dc, "P4", Color.YELLOW);
                 gameOver = true;
+                winner = 4;
             }
-
-            this.dc.redraw();
-            DConsole.pause(10);
+            dc.redraw();
+            dc.pause(10);
         }
-        DConsole.pause(3000);
-        App.switchGame(new GameSelect(dc, playerControllers, scores));
+
+         // give score
+        scores[winner -1] += 4;
+        dc.redraw();
+        dc.pause(5000);
+        App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 
     private void showWinner(DConsole dc, String player, Color color) {

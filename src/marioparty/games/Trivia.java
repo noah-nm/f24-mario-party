@@ -60,7 +60,7 @@ public class Trivia extends Game {
         DConsole.pause(2000);
 
         dc.clear();
-        dc.drawString("Back to uncomfirm answer", dc.getWidth() / 2, dc.getHeight() / 2);
+        dc.drawString("Back to unconfirm answer", dc.getWidth() / 2, dc.getHeight() / 2);
         dc.redraw();
         DConsole.pause(2000);
 
@@ -315,45 +315,61 @@ public class Trivia extends Game {
             if (scores[0] == i) {
                 if (first == -1 || first == i) {
                     scores[0] += 4;
+                    first = i;
                 } else if (second == -1 || second == i) {
                     scores[0] += 3;
+                    second = i;
                 } else if (third == -1 || third == i) {
                     scores[0] += 2;
+                    third = i;
                 } else if (fourth == -1 || fourth == i) {
                     scores[0] += 1;
+                    fourth = i;
                 }
             }
             if (scores[1] == i) {
                 if (first == -1 || first == i) {
                     scores[1] += 4;
+                    first = i;
                 } else if (second == -1 || second == i) {
                     scores[1] += 3;
+                    second = i;
                 } else if (third == -1 || third == i) {
                     scores[1] += 2;
+                    third = i;
                 } else if (fourth == -1 || fourth == i) {
                     scores[1] += 1;
+                    fourth = i;
                 }
             }
             if (scores[2] == i) {
                 if (first == -1 || first == i) {
                     scores[2] += 4;
+                    first = i;
                 } else if (second == -1 || second == i) {
                     scores[2] += 3;
+                    second = i;
                 } else if (third == -1 || third == i) {
                     scores[2] += 2;
+                    third = i;
                 } else if (fourth == -1 || fourth == i) {
                     scores[2] += 1;
+                    fourth = i;
                 }
             }
             if (scores[3] == i) {
                 if (first == -1 || first == i) {
                     scores[3] += 4;
+                    first = i;
                 } else if (second == -1 || second == i) {
                     scores[3] += 3;
+                    second = i;
                 } else if (third == -1 || third == i) {
                     scores[3] += 2;
+                    third = i;
                 } else if (fourth == -1 || fourth == i) {
                     scores[3] += 1;
+                    fourth = i;
                 }
             }
         }
