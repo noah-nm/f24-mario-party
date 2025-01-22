@@ -7,6 +7,7 @@ import DLibX.DConsole;
 import marioparty.App;
 import marioparty.menus.Leaderboard;
 import marioparty.utils.AbstractGamepad;
+import marioparty.menus.Leaderboard;;
 
 public class MashingGame extends Game {
 
@@ -129,11 +130,10 @@ public class MashingGame extends Game {
             dc.redraw();
             dc.pause(10);
         }
-
          // give score
         scores[winner -1] += 4;
         dc.redraw();
-        dc.pause(5000);
+        DConsole.pause(3000);
         App.switchGame(new Leaderboard(dc, playerControllers, scores));
     }
 
