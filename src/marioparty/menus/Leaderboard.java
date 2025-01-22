@@ -19,7 +19,7 @@ public class Leaderboard extends Game {
 
     public void play() {
         int[] workingScores = Arrays.copyOf(scores, 4);
-        Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
+        Color[] colors = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW };
         Font arialMedium = new Font("arial", Font.BOLD, 40);
 
         HashMap<Integer, Integer> indexToSortedValue = new HashMap<>();
@@ -38,27 +38,27 @@ public class Leaderboard extends Game {
             indexToSortedValue.put(i, workingScores[originalIndexes[i]]);
         }
 
-        dc.clear();
+        this.dc.clear();
 
         // Draw the leaderboard GUI
-        dc.setFont(arialMedium);
+        this.dc.setFont(arialMedium);
 
         for (int rank = 0; rank < originalIndexes.length; rank++) {
             int playerIndex = originalIndexes[rank];
             int yPosition = 100 + rank * 120;
 
             // Set the background color for each rank
-            dc.setPaint(colors[playerIndex]);
-            dc.fillRect(100, yPosition, 1000, 80);
+            this.dc.setPaint(colors[playerIndex]);
+            this.dc.fillRect(100, yPosition, 1000, 80);
 
             // Draw the player name and score
-            dc.setPaint(Color.BLACK);
-            dc.drawString("Player " + (playerIndex + 1), 150, yPosition + 10);
-            dc.drawString(String.valueOf(workingScores[playerIndex]), 950, yPosition + 10);
+            this.dc.setPaint(Color.BLACK);
+            this.dc.drawString("Player " + (playerIndex + 1), 150, yPosition + 10);
+            this.dc.drawString(String.valueOf(workingScores[playerIndex]), 950, yPosition + 10);
         }
 
-        dc.redraw();
-        dc.pause(5000);
+        this.dc.redraw();
+        DConsole.pause(3000);
         App.switchGame(new GameSelect(dc, playerControllers, workingScores));
     }
 }
