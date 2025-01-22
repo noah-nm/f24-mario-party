@@ -8,6 +8,7 @@ import marioparty.games.GameSelect;
 import marioparty.menus.Leaderboard;
 import marioparty.menus.MainMenu;
 import marioparty.menus.PlayerSelect;
+import marioparty.menus.Winner;
 import marioparty.utils.AbstractGamepad;
 import marioparty.utils.DebugGamepad;
 import marioparty.utils.Gamepad;
@@ -34,10 +35,6 @@ public class App {
     public void run() {
         initGameControllers();
 
-        if (gamepads.size() == 0) {
-            gamepads.add(new DebugGamepad());
-        }
-
         // initialization
         dc.setResizable(false);
         dc.setRenderingHints(DConsole.RENDER_HIGH_QUALITY);
@@ -53,6 +50,9 @@ public class App {
         // define new assigned players array, this array should be used in place of the
         // gamepads array list for further screens
         AbstractGamepad[] players = playerSelect.getPlayers();
+
+        // test 
+        scores[2] = 20;
 
         // leaderboard
         Leaderboard leaderboard = new Leaderboard(dc, players, scores);

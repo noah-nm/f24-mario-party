@@ -10,15 +10,18 @@ import marioparty.App;
 import marioparty.games.Game;
 import marioparty.games.GameSelect;
 import marioparty.utils.AbstractGamepad;
+import marioparty.menus.Winner;
 
 public class Leaderboard extends Game {
+
+    private int[] workingScores = Arrays.copyOf(scores, 4);
 
     public Leaderboard(DConsole dc, AbstractGamepad[] gamepads, int[] scores) {
         super(dc, gamepads, scores);
     }
 
     public void play() {
-        int[] workingScores = Arrays.copyOf(scores, 4);
+
         Color[] colors = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW };
         Font arialMedium = new Font("arial", Font.BOLD, 40);
 
@@ -59,6 +62,16 @@ public class Leaderboard extends Game {
 
         this.dc.redraw();
         DConsole.pause(3000);
+        this.checkWinner();
         App.switchGame(new GameSelect(dc, playerControllers, workingScores));
+    }
+
+    private void checkWinner() {
+        for (int score : workingScores) {
+            if (score >= 20) {
+                App.switchGame(new Winner(dc, playerControllers, workingScores));
+                return;
+            }
+        }
     }
 }
